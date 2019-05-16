@@ -1,12 +1,16 @@
+# Ignore everything.  We'll whitelist what we want to pull in.
+/*
+/*/
 
-\.vs/
+# Git meta files
+!.gitignore
+!.gitattributes
+!README.md
 
-Library/
+# Whitelisted directories/files
+!/ProjectSettings/
+!/Assets/
+!/Build/
 
-Logs/
 
-obj/
-
-Temp/
-
-Packages/
+/Assets/ScenesTests/*
