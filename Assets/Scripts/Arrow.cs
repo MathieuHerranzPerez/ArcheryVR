@@ -14,7 +14,7 @@ public class Arrow : MonoBehaviour
 
     private void Start()
     {
-        rBody = GetComponent<Rigidbody>();
+        Init();
     }
 
     void Update()
@@ -44,6 +44,8 @@ public class Arrow : MonoBehaviour
     public void Fire(Vector3 force)
     {
         isFired = true;
+        if (rBody == null)
+            Init();
         rBody.velocity = force;
         rBody.useGravity = true;
     }
@@ -63,5 +65,10 @@ public class Arrow : MonoBehaviour
             isAttached = true;
             ArrowManager.Instance.AttachBowToArrow();
         }
+    }
+
+    private void Init()
+    {
+        rBody = GetComponent<Rigidbody>();
     }
 }

@@ -103,6 +103,7 @@ public class ArrowManager : MonoBehaviour
 
         Vector3 force = currentArrow.transform.forward * power;
         currentArrow.GetComponent<Arrow>().Fire(force);
+        Destroy(currentArrow, 10f);
     }
 
     public void AttachBowToArrow()
