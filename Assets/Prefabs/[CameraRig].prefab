@@ -211,14 +211,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d2c657cd419cd9448ae85b954f4159c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxPower: 40
+  maxDist: 0.5
   squeezeAction:
-    actionPath: 
+    actionPath: /actions/default/in/Squeeze
     needsReinit: 0
-  arrowPrefab: {fileID: 9001977049895099232, guid: cacfead87b37632478a41f2367b526d2,
+  arrowPrefab: {fileID: 5821248917680674983, guid: dbd8c1d871713d5469324b8e66237c2f,
     type: 3}
   stringAttachPointGO: {fileID: 6473597782859177472}
   arrowStartPoint: {fileID: 8768499690651146962}
-  spawnPoint: {x: 0, y: 0, z: 0.34}
+  spawnPoint: {x: 0, y: 0, z: 0.3}
   stringStartPoint: {fileID: 8903298350843193892}
   trackedObject: {fileID: 2269350051228157068}
 --- !u!1 &2227975314976139444
@@ -454,6 +456,19 @@ MonoBehaviour:
     m_TypeName: Valve.VR.SteamVR_Behaviour_Pose_DeviceIndexChangedEvent, SteamVR,
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   broadcastDeviceChanges: 1
+--- !u!65 &548604229
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8339580830309226680}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.32016358, y: 0.54783565, z: 0.3607898}
+  m_Center: {x: -0, y: -1.3927742e-14, z: -1.3937982}
 --- !u!65 &7878905892240372895
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -465,8 +480,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.9028115, y: 1.022134, z: 2.1585553}
-  m_Center: {x: -0, y: -3.773884e-15, z: -0.556602}
+  m_Size: {x: 0.39738995, y: 0.449912, z: 0.786877}
+  m_Center: {x: -0, y: -3.399993e-17, z: -0.004547089}
 --- !u!1001 &164040788842742776
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -533,16 +548,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8928722955186723114, guid: e9c40279df3ae1d448c3043c78edeb16,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 3.17
-      objectReference: {fileID: 0}
-    - target: {fileID: 8928722955186723114, guid: e9c40279df3ae1d448c3043c78edeb16,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9c40279df3ae1d448c3043c78edeb16, type: 3}
