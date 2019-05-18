@@ -62,8 +62,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Arrow.cs" />
-    <Compile Include="Assets\Scripts\ArrowManager.cs" />
+    <Compile Include="Assets\Scripts\Bow\Arrow.cs" />
+    <Compile Include="Assets\Scripts\Bow\ArrowManager.cs" />
+    <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\Quizz\Quizz.cs" />
+    <Compile Include="Assets\Scripts\Quizz\QuizzContainer.cs" />
+    <Compile Include="Assets\Scripts\Quizz\QuizzEditorWrap.cs" />
+    <Compile Include="Assets\Scripts\Quizz\QuizzManager.cs" />
+    <Compile Include="Assets\Scripts\Quizz\SaveJsonSystem.cs" />
+    <Compile Include="Assets\Scripts\Sphere.cs" />
+    <Compile Include="Assets\Scripts\Utils.cs" />
+    <Compile Include="Assets\Scripts\Wave.cs" />
     <Compile Include="Assets\Scripts\WithoutVR\PlayerController.cs" />
     <Compile Include="Assets\Scripts\WithoutVR\PlayerMotor.cs" />
     <Reference Include="Unity.Timeline.Editor">
