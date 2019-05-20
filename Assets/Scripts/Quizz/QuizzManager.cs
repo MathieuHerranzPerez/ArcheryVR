@@ -37,6 +37,10 @@ public class QuizzManager : MonoBehaviour
         {
             SpawnWave();
         }
+        else
+        {
+            // TODO
+        }
     }
 
 
@@ -92,7 +96,7 @@ public class QuizzManager : MonoBehaviour
         GameObject waveCloneGO = (GameObject)Instantiate(wavePrefab);
         Wave waveClone = waveCloneGO.GetComponent<Wave>();
 
-        waveClone.SetQuizz(GetRandomQuizz());
+        waveClone.SetQuizzFromMananger(GetRandomQuizz(), this);
     }
 
     private Quizz GetRandomQuizz()

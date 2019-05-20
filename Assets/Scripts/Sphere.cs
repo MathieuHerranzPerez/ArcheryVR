@@ -1,12 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class Sphere : MonoBehaviour
 {
-    [SerializeField]
-    private float delta = 10f; // if the spehre is at pos + or - this
     [SerializeField]
     private GameObject deathEffect = default;
 
@@ -19,7 +15,7 @@ public class Sphere : MonoBehaviour
     private string data;
     private bool isCorrect;
     private float speed;
-    private Transform target;
+    private TargetPointSphere target;
 
 
     private bool hasExplode = false;    // to be sure to not be destroy several times
@@ -29,7 +25,7 @@ public class Sphere : MonoBehaviour
         return isCorrect;
     }
 
-    public void InitAndStart(Wave wave, string data, bool isCorrect, float speed, Transform target)
+    public void InitAndStart(Wave wave, string data, bool isCorrect, float speed, TargetPointSphere target)
     {
         this.wave = wave;
         this.data = data;
@@ -41,9 +37,9 @@ public class Sphere : MonoBehaviour
 
     void Update()
     {
-        if (target)
+        if (target != null)
         {
-            Vector3 direction = target.position - transform.position;  // get the direction of the target
+            Vector3 direction = target.transform.position - transform.position;  // get the direction of the target
             Quaternion lookRotation = Quaternion.LookRotation(direction);
             Vector3 rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * 10).eulerAngles;  // rotate
 
@@ -51,10 +47,19 @@ public class Sphere : MonoBehaviour
             transform.Translate(direction.normalized * speed * Time.deltaTime, Space.World);        // move
 
             // the shpere has reached the point
-            if (Vector3.Distance(transform.position, target.position) <= delta)
+            if (Vector3.Distance(transform.position, target.transform.position) <= target.GetRangeToExplose())
             {
                 Explode();
             }
+        }
+    }
+
+    void OnCollisionEnter(Collision other)
+    {
+        Debug.Log("Collision ! : " + other);
+        if(other.gameObject.tag == "Bullet")
+        {
+            ExplodeWithArrow();
         }
     }
 
@@ -64,7 +69,7 @@ public class Sphere : MonoBehaviour
         {
             hasExplode = true;
             wave.NotifySphereExplodeWithArrow(this);
-            if (deathEffect != null)
+            if (deathEffect != null)    // + sound
             {
                 GameObject effect = Instantiate(deathEffect, transform.position, Quaternion.identity);
                 Destroy(effect, 3f);
@@ -76,7 +81,7 @@ public class Sphere : MonoBehaviour
     private void Explode()
     {
         hasExplode = true;
-        wave.NotifySphereExplodeEndPath();
+        wave.NotifySphereExplodeEndPath(this);
         Destroy(gameObject);
     }
 }

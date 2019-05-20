@@ -10,6 +10,7 @@ public class Quizz
     public int difficulty = 1;
     public Subject subject;
     public string question;
+    public string Explanation;
     public List<string> listAnswer;
     public List<string> listBadAnswer;
 
