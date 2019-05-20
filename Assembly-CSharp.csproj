@@ -73,11 +73,13 @@
     <Compile Include="Assets\Scripts\Quizz\RecapScreen.cs" />
     <Compile Include="Assets\Scripts\Quizz\SaveJsonSystem.cs" />
     <Compile Include="Assets\Scripts\Quizz\Wave.cs" />
-    <Compile Include="Assets\Scripts\Sphere.cs" />
+    <Compile Include="Assets\Scripts\Sphere\Sphere.cs" />
     <Compile Include="Assets\Scripts\TargetPointSphere.cs" />
     <Compile Include="Assets\Scripts\Utils.cs" />
     <Compile Include="Assets\Scripts\WithoutVR\PlayerController.cs" />
     <Compile Include="Assets\Scripts\WithoutVR\PlayerMotor.cs" />
+    <Compile Include="Assets\Sounds\Sound.cs" />
+    <Compile Include="Assets\Sounds\SoundManager.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/Mathieu HP/UnityProjects/Archery/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>

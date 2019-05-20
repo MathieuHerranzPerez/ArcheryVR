@@ -57,17 +57,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1302169270467578374}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: -0, y: 0.98433447, z: -0.1763117, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0.974}
-  m_LocalScale: {x: 0.002, y: 0.002, z: 0.002}
+  m_LocalScale: {x: 0.006, y: 0.006, z: 0.006}
   m_Children:
   - {fileID: 6217560797755865566}
   m_Father: {fileID: 5092531122841517347}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 20.310001, y: 180.00002, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0.551}
+  m_AnchoredPosition: {x: 0, y: 2.16}
   m_SizeDelta: {x: 900, y: 506}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &1856017872051403055
@@ -177,7 +177,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2de0279457602df439a1242a9b369229, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deathEffect: {fileID: 0}
+  deathEffectForGoodAnswerPrefab: {fileID: 8447051090478364662, guid: 4ad9ca808f79b014da90fc12934f31d6,
+    type: 3}
+  deathEffectForWrongAnswerPrefab: {fileID: 982438409796594393, guid: ed1e8c91ddf5d624d8b95738ad34e36f,
+    type: 3}
   textField: {fileID: 4228842577764334697}
 --- !u!135 &5830662757172674403
 SphereCollider:
@@ -187,10 +190,10 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6824071039110448062}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1.25
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &-6446321814666691357
 Rigidbody:
@@ -298,7 +301,6 @@ GameObject:
   - component: {fileID: 4484843349068644213}
   - component: {fileID: 2463260623199360860}
   - component: {fileID: 3999980672189882728}
-  - component: {fileID: 6497269293950498897}
   m_Layer: 10
   m_Name: Sphere
   m_TagString: Untagged
@@ -315,7 +317,7 @@ Transform:
   m_GameObject: {fileID: 8822491032535934491}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_Children: []
   m_Father: {fileID: 1279713198667500131}
   m_RootOrder: 0
@@ -365,16 +367,3 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &6497269293950498897
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8822491032535934491}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}

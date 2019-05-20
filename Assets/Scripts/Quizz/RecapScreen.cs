@@ -43,7 +43,7 @@ public class RecapScreen : MonoBehaviour
         textNbWrongAnswer.text = nbWrongAnswer.ToString();
 
         int percentage = nbRightAnswer * 100 / (nbRightAnswer + nbWrongAnswer);
-        textNbSuccessRate.text = percentage.ToString();
+        textNbSuccessRate.text = percentage.ToString() + "%";
 
         textCongratulation.text = GetCongratulationSentence(percentage);
 

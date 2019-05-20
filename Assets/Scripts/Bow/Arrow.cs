@@ -6,6 +6,9 @@ public class Arrow : MonoBehaviour
 {
     public SteamVR_Action_Single squeezeAction = SteamVR_Input.GetAction<SteamVR_Action_Single>("Squeeze");
 
+    [SerializeField]
+    private GameObject EffectGO = default;
+
     // ---- INTERN ----
     private bool isAttached = false;
     private bool isFired = false;
@@ -41,6 +44,17 @@ public class Arrow : MonoBehaviour
         --nbTriggerActive;
     }
 
+    void OnCollisionEnter(Collision other)
+    {
+        if(other.transform.tag == "Ground")
+        {
+            // freeze the arrow
+            rBody.velocity = Vector3.zero;
+            rBody.useGravity = false;
+        }
+        Destroy(gameObject, 3f);
+    }
+
     public void Fire(Vector3 force)
     {
         isFired = true;
@@ -48,8 +62,9 @@ public class Arrow : MonoBehaviour
             Init();
         rBody.velocity = force;
         rBody.useGravity = true;
-    }
 
+        EffectGO.SetActive(true);
+    }
 
     private void FollowGravity()
     {

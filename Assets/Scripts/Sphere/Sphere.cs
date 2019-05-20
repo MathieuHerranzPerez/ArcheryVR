@@ -4,7 +4,9 @@ using UnityEngine.UI;
 public class Sphere : MonoBehaviour
 {
     [SerializeField]
-    private GameObject deathEffect = default;
+    private GameObject deathEffectForGoodAnswerPrefab = default;
+    [SerializeField]
+    private GameObject deathEffectForWrongAnswerPrefab = default;
 
     [Header("Setup")]
     [SerializeField]
@@ -54,7 +56,7 @@ public class Sphere : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter(Collision other)
+    void OnTriggerEnter(Collider other)
     {
         Debug.Log("Collision ! : " + other);
         if(other.gameObject.tag == "Bullet")
@@ -69,11 +71,18 @@ public class Sphere : MonoBehaviour
         {
             hasExplode = true;
             wave.NotifySphereExplodeWithArrow(this);
-            if (deathEffect != null)    // + sound
+
+            if (isCorrect)
             {
-                GameObject effect = Instantiate(deathEffect, transform.position, Quaternion.identity);
+                GameObject effect = Instantiate(deathEffectForGoodAnswerPrefab, transform.position, Quaternion.identity);
                 Destroy(effect, 3f);
             }
+            else
+            {
+                GameObject effect = Instantiate(deathEffectForWrongAnswerPrefab, transform.position, Quaternion.identity);
+                Destroy(effect, 3f);
+            }
+
             Destroy(gameObject);
         }
     }

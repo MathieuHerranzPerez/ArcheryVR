@@ -77,7 +77,7 @@ public class Wave : MonoBehaviour
         }
 
         // if there is no sphere in the field (ie all have been destroyed)
-        if(nbGoodAnswer + nbWrongAnswer + nbSphereEndPath == quizz.listAnswer.Count + quizz.listBadAnswer.Count)
+        if(nbGoodAnswer + nbWrongAnswer + nbSphereEndPath >= quizz.listAnswer.Count + quizz.listBadAnswer.Count)
         {
             FinishWave();
         }
