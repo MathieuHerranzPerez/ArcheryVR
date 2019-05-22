@@ -13,6 +13,9 @@ public class ArrowManager : MonoBehaviour
     [SerializeField]
     private float maxDist = 0.9f;
 
+    [SerializeField]
+    private float timeToLive = 10f;
+
 
     [Header("Setup")]
     public SteamVR_Action_Single squeezeAction/* = SteamVR_Input.GetAction<SteamVR_Action_Single>("Squeeze")*/;
@@ -103,7 +106,7 @@ public class ArrowManager : MonoBehaviour
 
         Vector3 force = currentArrow.transform.forward * power;
         currentArrow.GetComponent<Arrow>().Fire(force);
-        Destroy(currentArrow, 10f);
+        Destroy(currentArrow, timeToLive);
     }
 
     public void AttachBowToArrow()
