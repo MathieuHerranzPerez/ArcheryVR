@@ -145,6 +145,6 @@ public class ArrowManager : MonoBehaviour
     public bool IsStringPulled()
     {
         float dist = Vector3.Distance(stringStartPoint.position, trackedObject.transform.position);
-        return dist > (maxDist / 1.5f);
+        return dist > (maxDist / 2f);
     }
 }

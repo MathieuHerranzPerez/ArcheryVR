@@ -58,12 +58,14 @@ public class TutoManager : MonoBehaviour
         }
         else if(state == State.QUESTIONS)
         {
-            // todo
+            
         }
         else if(state == State.SHOOT_SPHERE)
         {
+            Debug.Log("SHOOT");
             if (goodSphereGO1 == null && goodSphereGO2 == null)
             {
+                Debug.Log("destroyed");
                 GoToNextState();
             }
         }
@@ -82,7 +84,7 @@ public class TutoManager : MonoBehaviour
         }
         else if (state == State.PUT_ARROW)
         {
-            state = State.PUT_ARROW;
+            state = State.PULL_STRING;
             screenTutoPutArrow.SetActive(false);
 
             // display how to pull string
@@ -109,7 +111,6 @@ public class TutoManager : MonoBehaviour
         }
         else if (state == State.QUESTIONS)
         {
-            state = State.SHOOT_SPHERE;
             screenTutoQuestion.SetActive(false);
 
             // display how to shoot
@@ -119,7 +120,9 @@ public class TutoManager : MonoBehaviour
             goodSphereGO1.SetActive(true);
             goodSphereGO2.SetActive(true);
             wrongSphereGO1.SetActive(true);
-            wrongSphereGO2.SetActive(false);
+            wrongSphereGO2.SetActive(true);
+
+            state = State.SHOOT_SPHERE;
         }
         else if (state == State.SHOOT_SPHERE)
         {
@@ -143,7 +146,7 @@ public class TutoManager : MonoBehaviour
     private IEnumerator CountTimeForQuestion()
     {
         float time = 0f;
-        while(time < 5f)
+        while(time < 12f)
         {
             time += Time.deltaTime;
             yield return null;
