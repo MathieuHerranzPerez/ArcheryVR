@@ -29,10 +29,11 @@ public class Wave : MonoBehaviour
     private QuizzManager quizzManager;
     private Quizz quizz;
 
-    private List<Transform> listSpawnPoint = new List<Transform>();
+    private List<SpawnPoint> listSpawnPoint = new List<SpawnPoint>();
     private int nbGoodAnswer = 0;
     private int nbWrongAnswer = 0;
     private int nbSphereEndPath = 0;
+    private int nbRightSphereEndOfPath = 0;
 
 
     public void SetQuizzFromMananger(Quizz quizz, QuizzManager quizzManager)
@@ -70,6 +71,7 @@ public class Wave : MonoBehaviour
         if (sphere.IsCorrect())
         {
             ++nbWrongAnswer;
+            ++nbRightSphereEndOfPath;
         }
         else
         {
@@ -78,6 +80,10 @@ public class Wave : MonoBehaviour
 
         // if there is no sphere in the field (ie all have been destroyed)
         if(nbGoodAnswer + nbWrongAnswer + nbSphereEndPath >= quizz.listAnswer.Count + quizz.listBadAnswer.Count)
+        {
+            FinishWave();
+        }
+        else if(nbRightSphereEndOfPath + nbGoodAnswer + nbSphereEndPath >= quizz.listAnswer.Count + quizz.listBadAnswer.Count)
         {
             FinishWave();
         }
@@ -119,12 +125,12 @@ public class Wave : MonoBehaviour
         int nbSphereSpawned = 0;
         while (nbSphereSpawned < listQuizzToSpawn.Count)
         {
-            Transform spawnPoint = listSpawnPoint[UnityEngine.Random.Range(0, listSpawnPoint.Count)];
+            SpawnPoint spawnPoint = listSpawnPoint[UnityEngine.Random.Range(0, listSpawnPoint.Count)];
             listSpawnPoint.Remove(spawnPoint);
 
-            GameObject sphereCloneGO = Instantiate(spherePrefab, spawnPoint.position, spawnPoint.rotation, sphereContainer.transform);
+            GameObject sphereCloneGO = Instantiate(spherePrefab, spawnPoint.transform.position, spawnPoint.transform.rotation, sphereContainer.transform);
             Sphere sphereClone = sphereCloneGO.GetComponent<Sphere>();
-            sphereClone.InitAndStart(this, listQuizzToSpawn[nbSphereSpawned].Item1, listQuizzToSpawn[nbSphereSpawned].Item2, speed, target);
+            sphereClone.InitAndStart(this, listQuizzToSpawn[nbSphereSpawned].Item1, listQuizzToSpawn[nbSphereSpawned].Item2, speed, spawnPoint.path);
 
             ++nbSphereSpawned;
             yield return new WaitForSeconds(0.5f);
@@ -157,7 +163,7 @@ public class Wave : MonoBehaviour
     {
         foreach (Transform t in spawnPointContainer.transform)
         {
-            listSpawnPoint.Add(t);
+            listSpawnPoint.Add(t.GetComponent<SpawnPoint>());
         }
     }
 }

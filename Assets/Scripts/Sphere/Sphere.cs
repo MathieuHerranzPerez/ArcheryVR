@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(SphereMovement))]
 public class Sphere : MonoBehaviour
 {
     [SerializeField]
@@ -11,58 +12,62 @@ public class Sphere : MonoBehaviour
     [Header("Setup")]
     [SerializeField]
     private Text textField = default;
+    [SerializeField]
+    private GameObject canvasTextFieldGO = default;
 
     // ---- INTERN ----
+    private GameObject player;
+    private SphereMovement sphereMovement;
+
     private Wave wave;
     private string data;
     private bool isCorrect;
-    private float speed;
-    private TargetPointSphere target;
-
-
+   
     private bool hasExplode = false;    // to be sure to not be destroy several times
-    
+
+    void Start()
+    {
+        player = GameObject.FindWithTag("Player");
+    }
+
+    void Update()
+    {
+        Vector3 direction = player.transform.position - canvasTextFieldGO.transform.position;   // direction to the target
+        // healthbar follows the player
+        Quaternion lookRatation = Quaternion.LookRotation(-direction);
+        Vector3 rotation = Quaternion.Lerp(canvasTextFieldGO.transform.rotation, lookRatation, Time.deltaTime * 10).eulerAngles;
+        canvasTextFieldGO.transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
+    }
+
     public bool IsCorrect()
     {
         return isCorrect;
     }
 
-    public void InitAndStart(Wave wave, string data, bool isCorrect, float speed, TargetPointSphere target)
+    public void InitAndStart(Wave wave, string data, bool isCorrect, float speed, PathSphere path)
     {
+        sphereMovement = GetComponent<SphereMovement>();
+        sphereMovement.Init(path, speed);
+
         this.wave = wave;
         this.data = data;
         textField.text = data;
         this.isCorrect = isCorrect;
-        this.speed = speed;
-        this.target = target;   // start the move
-    }
-
-    void Update()
-    {
-        if (target != null)
-        {
-            Vector3 direction = target.transform.position - transform.position;  // get the direction of the target
-            Quaternion lookRotation = Quaternion.LookRotation(direction);
-            Vector3 rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * 10).eulerAngles;  // rotate
-
-            transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
-            transform.Translate(direction.normalized * speed * Time.deltaTime, Space.World);        // move
-
-            // the shpere has reached the point
-            if (Vector3.Distance(transform.position, target.transform.position) <= target.GetRangeToExplose())
-            {
-                Explode();
-            }
-        }
     }
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Collision ! : " + other);
         if(other.gameObject.tag == "Bullet")
         {
             ExplodeWithArrow();
         }
+    }
+
+    public void Explode()
+    {
+        hasExplode = true;
+        wave.NotifySphereExplodeEndPath(this);
+        Destroy(gameObject);
     }
 
     private void ExplodeWithArrow()
@@ -85,12 +90,5 @@ public class Sphere : MonoBehaviour
 
             Destroy(gameObject);
         }
-    }
-
-    private void Explode()
-    {
-        hasExplode = true;
-        wave.NotifySphereExplodeEndPath(this);
-        Destroy(gameObject);
     }
 }

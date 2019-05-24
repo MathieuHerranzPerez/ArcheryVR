@@ -48,7 +48,7 @@ MonoBehaviour:
     - scolarLevel: 0
       difficulty: 1
       subject: 1
-      question: Eclate les nombres paires
+      question: Eclate les nombres pairs
       Explanation: Les nombres paires finissent par 0, 2, 4, 6, ou 8
       listAnswer:
       - 2

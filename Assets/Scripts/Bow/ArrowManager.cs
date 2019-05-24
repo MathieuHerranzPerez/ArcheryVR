@@ -53,8 +53,19 @@ public class ArrowManager : MonoBehaviour
     void Update()
     {
         // todo modifier pour moins moche
-        AttachArrow();
+        // AttachArrow();
         PullString();
+    }
+
+    void OnTriggerStay(Collider other)
+    {
+        // TODO /!\ CHANGE INPUT
+        float triggerValue = squeezeAction.GetAxis(SteamVR_Input_Sources.RightHand);
+
+        if (other.tag == "Quiver" && triggerValue > 0.2f)
+        {
+            AttachArrow();
+        }
     }
 
     private void AttachArrow()
@@ -116,5 +127,23 @@ public class ArrowManager : MonoBehaviour
         currentArrow.transform.rotation = arrowStartPoint.rotation;
 
         isAttached = true;
+    }
+
+
+    // ---- tuto ----
+    public GameObject GetCurrentArrow()
+    {
+        return currentArrow;
+    }
+
+    public bool IsArrowAttached()
+    {
+        return isAttached;
+    }
+
+    public bool IsStringPulled()
+    {
+        float dist = Vector3.Distance(stringStartPoint.position, trackedObject.transform.position);
+        return dist > (maxDist / 1.5f);
     }
 }

@@ -91,7 +91,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nbWave: 8
-  wavePrefab: {fileID: 8066806122134810532, guid: 5b3f936d55a37174f947cff103cec315,
+  wavePrefab: {fileID: 3840808566164250622, guid: 7c154bb9c660b274c8e6ce6402a662a1,
     type: 3}
   quizzWrap: {fileID: 7038845021268668844}
 --- !u!1 &7038845021268668850

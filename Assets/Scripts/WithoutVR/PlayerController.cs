@@ -46,8 +46,8 @@ public class PlayerController : MonoBehaviour
         {
             GameObject arrowGO = (GameObject)Instantiate(arrowPrefab, transform.position, transform.rotation);
             Arrow arrow = arrowGO.GetComponent<Arrow>();
-            arrow.Fire(40f * cam.transform.forward);
-            Destroy(arrow, 10f);
+            arrow.Fire(60f * cam.transform.forward);
+            Destroy(arrow.gameObject, 10f);
         }
     }
 }

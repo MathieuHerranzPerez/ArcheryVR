@@ -56,24 +56,29 @@ public class RecapScreen : MonoBehaviour
         sb.Append("<color=#");
 
         if (percentage == 100)
+        {
             sb.Append(ColorUtility.ToHtmlStringRGB(excellentColor));
-        else if (percentage >= 80)
-            sb.Append(ColorUtility.ToHtmlStringRGB(goodColor));
-        else if(percentage >= 40)
-            sb.Append(ColorUtility.ToHtmlStringRGB(mediumColor));
-        else
-            sb.Append(ColorUtility.ToHtmlStringRGB(badColor));
-
-        sb.Append(">");
-
-        if (percentage == 100)
+            sb.Append(">");
             sb.Append(allGoodSentence);
+        }
         else if (percentage >= 80)
+        {
+            sb.Append(ColorUtility.ToHtmlStringRGB(goodColor));
+            sb.Append(">");
             sb.Append(almostAllRightSentence);
-        else if (percentage >= 40)
+        }
+        else if (percentage >= 60)
+        {
+            sb.Append(ColorUtility.ToHtmlStringRGB(mediumColor));
+            sb.Append(">");
             sb.Append(mediumSentence);
+        }
         else
+        {
+            sb.Append(ColorUtility.ToHtmlStringRGB(badColor));
+            sb.Append(">");
             sb.Append(badSentence);
+        }
 
         sb.Append("</color>");
 
