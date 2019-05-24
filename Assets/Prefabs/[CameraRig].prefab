@@ -1,5 +1,19 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!136 &8290898367978841129
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1756692409595618188}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.08
+  m_Height: 0.5
+  m_Direction: 1
+  m_Center: {x: 0, y: -0.15, z: 0}
 --- !u!1 &2227265583267488372
 GameObject:
   m_ObjectHideFlags: 0
@@ -217,6 +231,9 @@ MonoBehaviour:
   timeToLive: 10
   squeezeAction:
     actionPath: /actions/default/in/Squeeze
+    needsReinit: 0
+  grabArrow:
+    actionPath: /actions/default/in/GrabArrow
     needsReinit: 0
   arrowPrefab: {fileID: 5821248917680674983, guid: dbd8c1d871713d5469324b8e66237c2f,
     type: 3}
@@ -472,20 +489,6 @@ MonoBehaviour:
     m_TypeName: Valve.VR.SteamVR_Behaviour_Pose_DeviceIndexChangedEvent, SteamVR,
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   broadcastDeviceChanges: 1
---- !u!136 &8290898367978841129
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1756692409595618188}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.08
-  m_Height: 0.5
-  m_Direction: 1
-  m_Center: {x: 0, y: -0.15, z: 0}
 --- !u!65 &548604229
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -776,17 +779,17 @@ PrefabInstance:
     - target: {fileID: 3220784009892052077, guid: 791bb5243d83f614abb82e92b66b2696,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.288
+      value: 0.348
       objectReference: {fileID: 0}
     - target: {fileID: 3220784009892052077, guid: 791bb5243d83f614abb82e92b66b2696,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.086
+      value: 0.512
       objectReference: {fileID: 0}
     - target: {fileID: 3220784009892052077, guid: 791bb5243d83f614abb82e92b66b2696,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.07034588
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 3220784009892052077, guid: 791bb5243d83f614abb82e92b66b2696,
         type: 3}
@@ -828,8 +831,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 5309853473144432570, guid: 791bb5243d83f614abb82e92b66b2696, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 791bb5243d83f614abb82e92b66b2696, type: 3}
 --- !u!1 &1756692409595618188 stripped
 GameObject:

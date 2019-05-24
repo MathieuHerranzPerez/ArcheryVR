@@ -2,6 +2,7 @@
 using Valve.VR;
 
 [RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(BoxCollider))]
 public class Arrow : MonoBehaviour
 {
     public SteamVR_Action_Single squeezeAction = SteamVR_Input.GetAction<SteamVR_Action_Single>("Squeeze");
@@ -57,6 +58,7 @@ public class Arrow : MonoBehaviour
 
     public void Fire(Vector3 force)
     {
+        GetComponent<BoxCollider>().enabled = true;
         isFired = true;
         if (rBody == null)
             Init();

@@ -19,6 +19,7 @@ public class ArrowManager : MonoBehaviour
 
     [Header("Setup")]
     public SteamVR_Action_Single squeezeAction/* = SteamVR_Input.GetAction<SteamVR_Action_Single>("Squeeze")*/;
+    public SteamVR_Action_Single grabArrow;
     [SerializeField]
     private GameObject arrowPrefab = default;
     [SerializeField]
@@ -60,7 +61,7 @@ public class ArrowManager : MonoBehaviour
     void OnTriggerStay(Collider other)
     {
         // TODO /!\ CHANGE INPUT
-        float triggerValue = squeezeAction.GetAxis(SteamVR_Input_Sources.RightHand);
+        float triggerValue = grabArrow.GetAxis(SteamVR_Input_Sources.RightHand);
 
         if (other.tag == "Quiver" && triggerValue > 0.2f)
         {

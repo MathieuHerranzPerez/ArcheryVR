@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SteamVR_Editor", "SteamVR_E
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SteamVR_Input_Editor", "SteamVR_Input_Editor.csproj", "{DA7C3A35-70C8-5F81-9A0A-A584E81861E9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "Assembly-CSharp-Editor.csproj", "{27B41CF3-59C2-49C8-F276-25A1EF627FEB}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SteamVR_Windows_EditorHelper", "SteamVR_Windows_EditorHelper.csproj", "{E3452B24-EC0D-4EB5-EFE3-877C3D1B293D}"
 EndProject
 Global
@@ -39,6 +41,10 @@ Global
 		{DA7C3A35-70C8-5F81-9A0A-A584E81861E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DA7C3A35-70C8-5F81-9A0A-A584E81861E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DA7C3A35-70C8-5F81-9A0A-A584E81861E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27B41CF3-59C2-49C8-F276-25A1EF627FEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27B41CF3-59C2-49C8-F276-25A1EF627FEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27B41CF3-59C2-49C8-F276-25A1EF627FEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27B41CF3-59C2-49C8-F276-25A1EF627FEB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E3452B24-EC0D-4EB5-EFE3-877C3D1B293D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E3452B24-EC0D-4EB5-EFE3-877C3D1B293D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E3452B24-EC0D-4EB5-EFE3-877C3D1B293D}.Release|Any CPU.ActiveCfg = Release|Any CPU

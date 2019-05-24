@@ -423,10 +423,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1044009304507902630}
   - component: {fileID: 4342623068242111991}
-  - component: {fileID: 3680327266658319903}
   - component: {fileID: 1361577810011358169}
   - component: {fileID: 8634194905700714889}
   - component: {fileID: 8181430319624445359}
+  - component: {fileID: 301231751538450397}
   m_Layer: 8
   m_Name: Arrow2
   m_TagString: Bullet
@@ -459,23 +459,10 @@ BoxCollider:
   m_GameObject: {fileID: 5821248917680674983}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 0.03656199, y: 0.054031786, z: 0.9295099}
-  m_Center: {x: 0, y: 0, z: 0.44494992}
---- !u!65 &3680327266658319903
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5821248917680674983}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.033838667, y: 0.045822166, z: 0.103716254}
-  m_Center: {x: 0, y: 0.0015011951, z: 0.84884125}
+  m_Size: {x: 0.03656199, y: 0.054031786, z: 0.094472945}
+  m_Center: {x: 0, y: 0, z: 0.86246836}
 --- !u!54 &1361577810011358169
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -525,7 +512,21 @@ MonoBehaviour:
   forSources: 0
   disableAllOtherActionSets: 0
   activateOnStart: 1
-  deactivateOnDestroy: 1
+  deactivateOnDestroy: 0
+--- !u!136 &301231751538450397
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5821248917680674983}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.035
+  m_Height: 0.9
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 0.46}
 --- !u!1 &8401472576528794250
 GameObject:
   m_ObjectHideFlags: 0
@@ -611,18 +612,6 @@ PrefabInstance:
     - target: {fileID: 4639412115680890, guid: eba12193aa2e30d4fa0e476b28f8e198, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4639412115680890, guid: eba12193aa2e30d4fa0e476b28f8e198, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4639412115680890, guid: eba12193aa2e30d4fa0e476b28f8e198, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4639412115680890, guid: eba12193aa2e30d4fa0e476b28f8e198, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eba12193aa2e30d4fa0e476b28f8e198, type: 3}
