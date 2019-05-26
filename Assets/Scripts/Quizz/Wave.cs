@@ -14,8 +14,6 @@ public class Wave : MonoBehaviour
     [SerializeField]
     private GameObject spherePrefab = default;
     [SerializeField]
-    private TargetPointSphere target = default;
-    [SerializeField]
     private GameObject spawnPointContainer = default;
     [SerializeField]
     private RecapScreen recapScreen = default;
