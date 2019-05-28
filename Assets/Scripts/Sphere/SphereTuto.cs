@@ -39,7 +39,7 @@ public class SphereTuto : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Bullet")
+        if (other.gameObject.tag == "Arrow")
         {
             ExplodeWithArrow();
         }

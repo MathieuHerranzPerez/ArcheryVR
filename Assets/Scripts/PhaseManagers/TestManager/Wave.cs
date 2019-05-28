@@ -9,6 +9,10 @@ public class Wave : MonoBehaviour
     private float minSpeed = 3f;
     [SerializeField]
     private float maxSpeed = 8f;
+    [SerializeField]
+    private int nbGoodAnswerToGenerate = 8;
+    [SerializeField]
+    private int nbWrongAnswerToGenerate = 10;
 
     [Header("Setup")]    
     [SerializeField]
@@ -24,8 +28,12 @@ public class Wave : MonoBehaviour
     private List<QuestionScreen> listTextQuestion = new List<QuestionScreen>();
 
     // ---- INTERN ----
-    private QuizzManager quizzManager;
-    private Quizz quizz;
+    private TestPhaseManager testPhaseManager;
+    private Multiplication multiplication;
+    //private Quizz quizz;
+
+    private string question;
+    private string explanation;
 
     private List<SpawnPoint> listSpawnPoint = new List<SpawnPoint>();
     private int nbGoodAnswer = 0;
@@ -34,7 +42,24 @@ public class Wave : MonoBehaviour
     private int nbRightSphereEndOfPath = 0;
 
 
-    public void SetQuizzFromMananger(Quizz quizz, QuizzManager quizzManager)
+    public void SetQuizzFromMananger(Multiplication multiplication, TestPhaseManager testPhaseManager)
+    {
+        this.testPhaseManager = testPhaseManager;
+        this.multiplication = multiplication;
+
+        Init();
+
+        foreach (QuestionScreen qs in listTextQuestion)
+        {
+            qs.SetQuestion(question);
+            qs.gameObject.SetActive(true);
+        }
+
+        StartSpawn();
+    }
+
+    /*
+    public void SetQuizzFromMananger(Quizz quizz, TestPhaseManager quizzManager)
     {
         this.quizzManager = quizzManager;
         this.quizz = quizz;
@@ -46,6 +71,8 @@ public class Wave : MonoBehaviour
 
         StartSpawn();
     }
+    */
+
 
     public void NotifySphereExplodeWithArrow(Sphere sphere)
     {
@@ -53,7 +80,7 @@ public class Wave : MonoBehaviour
         {
             ++nbGoodAnswer;
             // the user has shot all the right answers
-            if(nbGoodAnswer == quizz.listAnswer.Count)
+            if(nbGoodAnswer == nbGoodAnswerToGenerate)
             {
                 FinishWave();
             }
@@ -64,6 +91,7 @@ public class Wave : MonoBehaviour
         }
     }
 
+    
     public void NotifySphereExplodeEndPath(Sphere sphere)
     {
         if (sphere.IsCorrect())
@@ -77,23 +105,25 @@ public class Wave : MonoBehaviour
         }
 
         // if there is no sphere in the field (ie all have been destroyed)
-        if(nbGoodAnswer + nbWrongAnswer + nbSphereEndPath >= quizz.listAnswer.Count + quizz.listBadAnswer.Count)
+        if(nbGoodAnswer + nbWrongAnswer + nbSphereEndPath >= nbGoodAnswerToGenerate + nbWrongAnswerToGenerate)
         {
             FinishWave();
         }
-        else if(nbRightSphereEndOfPath + nbGoodAnswer + nbSphereEndPath >= quizz.listAnswer.Count + quizz.listBadAnswer.Count)
+        else if(nbRightSphereEndOfPath + nbGoodAnswer + nbSphereEndPath >= nbGoodAnswerToGenerate + nbWrongAnswerToGenerate)
         {
             FinishWave();
         }
     }
 
+    
     // TODO call with btn
     public void DestroyWave()
     {
-        quizzManager.NotifyWaveEnd();
+        testPhaseManager.NotifyWaveDestroyed();
         Destroy(gameObject);
     }
 
+    /*
     private void StartSpawn()
     {
         Init();
@@ -117,6 +147,72 @@ public class Wave : MonoBehaviour
         float speed = quizz.difficulty > 2 ? maxSpeed : minSpeed;
         StartCoroutine(SpawnSpheres(listQuizzToSpawn, speed));
     }
+    */
+    private void StartSpawn()
+    {
+        if (listSpawnPoint.Count < nbGoodAnswerToGenerate + nbWrongAnswerToGenerate)
+            throw new Exception("Not enought spawn points to handle all the answers");
+
+        // tmp list to shuffle the answers
+        List<Tuple<string, bool>> listQuizzToSpawn = new List<Tuple<string, bool>>();
+
+        foreach (int i in GenerateAnswers(true))
+        {
+            listQuizzToSpawn.Add(new Tuple<string, bool>(i.ToString(), true));
+        }
+
+        foreach (int i in GenerateAnswers(false))
+        {
+            listQuizzToSpawn.Add(new Tuple<string, bool>(i.ToString(), false));
+        }
+
+        Utils.Shuffle(listQuizzToSpawn);
+
+        StartCoroutine(SpawnSpheres(listQuizzToSpawn, minSpeed));
+    }
+
+    private List<int> GenerateAnswers(bool isCorrectAnswer)
+    {
+        List<int> listMult = new List<int>();
+        for(int i = 0; i <= 12; ++i)
+        {
+            listMult.Add(i);
+        }
+
+        List<int> res = new List<int>();
+        
+        if (isCorrectAnswer)
+        {
+            for (int i = 0; i <= nbGoodAnswerToGenerate; ++i)
+            {
+                int randomIndex = UnityEngine.Random.Range(0, listMult.Count);
+                res.Add(listMult[randomIndex] * multiplication.num);
+
+                listMult.RemoveAt(randomIndex);
+
+            }
+        }
+        else
+        {
+            listMult.Remove(multiplication.num);
+            for (int i = 0; i <= nbWrongAnswerToGenerate; ++i)
+            {
+                bool isOk = false;
+                while (!isOk)
+                {
+                    int wrongAnswer = listMult[UnityEngine.Random.Range(0, listMult.Count)] * listMult[UnityEngine.Random.Range(0, listMult.Count)];
+                    if (wrongAnswer % multiplication.num != 0)
+                    {
+                        isOk = true;
+                        res.Add(wrongAnswer);
+                    }
+                }
+            }
+        }
+
+        return res;
+    }
+
 
     private IEnumerator SpawnSpheres(List<Tuple<string, bool>> listQuizzToSpawn, float speed)
     {
@@ -134,6 +230,7 @@ public class Wave : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
         }
     }
+    
 
     private void FinishWave()
     {
@@ -151,17 +248,22 @@ public class Wave : MonoBehaviour
         }
 
         // display the stats
-        recapScreen.SetValues(quizz.question, nbGoodAnswer, nbWrongAnswer, quizz.Explanation);
+        recapScreen.SetValues(this.question, nbGoodAnswer, nbWrongAnswer, multiplication.explanation);
         recapScreen.gameObject.SetActive(true);
 
-        // TODO Save stats
+        testPhaseManager.NotifyWaveEnd(nbGoodAnswer, nbWrongAnswer);
     }
 
+    
     private void Init()
     {
+        question = "Eclate les multiples de " + multiplication.num + " !";
+
+
         foreach (Transform t in spawnPointContainer.transform)
         {
             listSpawnPoint.Add(t.GetComponent<SpawnPoint>());
         }
     }
+    
 }

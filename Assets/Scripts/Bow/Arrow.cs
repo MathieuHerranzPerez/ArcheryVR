@@ -5,10 +5,16 @@ using Valve.VR;
 [RequireComponent(typeof(BoxCollider))]
 public class Arrow : MonoBehaviour
 {
+    [Header("Setup")]
     public SteamVR_Action_Single squeezeAction = SteamVR_Input.GetAction<SteamVR_Action_Single>("Squeeze");
 
     [SerializeField]
-    private GameObject EffectGO = default;
+    private GameObject effectGO = default;
+    [SerializeField]
+    private Transform firePoint = default;
+
+    [HideInInspector]
+    public int power = 1;
 
     // ---- INTERN ----
     private bool isAttached = false;
@@ -53,6 +59,7 @@ public class Arrow : MonoBehaviour
             rBody.velocity = Vector3.zero;
             rBody.useGravity = false;
         }
+
         Destroy(gameObject, 3f);
     }
 
@@ -65,7 +72,14 @@ public class Arrow : MonoBehaviour
         rBody.velocity = force;
         rBody.useGravity = true;
 
-        EffectGO.SetActive(true);
+        effectGO.SetActive(true);
+    }
+
+    public void MultiplyPower(int power, ParticleSystem particlePrefab)
+    {
+        Debug.Log("Multiply : " + power);
+        this.power *= power;
+        Instantiate(particlePrefab, firePoint);
     }
 
     private void FollowGravity()

@@ -1,0 +1,85 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &446776322275178010
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 446776322275178011}
+  - component: {fileID: 7960620817591165168}
+  m_Layer: 0
+  m_Name: MultiplicationTable
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &446776322275178011
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 446776322275178010}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7960620817591165168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 446776322275178010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b545dcbaabb8d64cbafad10a405bf89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  listMultiplication:
+  - num: 2
+    explanation: Les multiples de 2 sont tous pairs. Ils se terminent par 0, 2, 4,
+      6 ou 8.
+    level: 1
+  - num: 3
+    explanation: Pour trouver les multiples de 3, additionne les chiffres qui composent
+      le nombre. Si cette somme donne un multiple de 3, alors le nombre initial en
+      est un aussi. Par exemple, 36. 3+6 = 9 qui est un multiple de 3 (car 3 x 3 =
+      9). Donc 36 est un multiple de 3 !
+    level: 2
+  - num: 4
+    explanation: 
+    level: 2
+  - num: 5
+    explanation: "Les multiples de 5 sont faciles \xE0 reconnaitre : ils finissent
+      par 0 ou 5"
+    level: 1
+  - num: 6
+    explanation: 
+    level: 2
+  - num: 7
+    explanation: 
+    level: 3
+  - num: 8
+    explanation: 
+    level: 3
+  - num: 9
+    explanation: 
+    level: 3
+  - num: 10
+    explanation: "Les multiples de 10 erminent par 0. Pour multiplier un nombre par
+      10, il faut simplement ajouter un 0 \xE0 la fi nde celui-ci (22 * 10 = 220)"
+    level: 1
+  - num: 11
+    explanation: 
+    level: 3
+  - num: 12
+    explanation: 
+    level: 4
