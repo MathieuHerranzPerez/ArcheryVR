@@ -86,6 +86,9 @@ public class Wave : MonoBehaviour
     // TODO call with btn
     public void DestroyWave()
     {
+        // Save stats
+        quizzManager.saveWaveStat(quizz.subject, nbGoodAnswer, nbWrongAnswer);
+
         quizzManager.NotifyWaveEnd();
         Destroy(gameObject);
     }
@@ -150,7 +153,6 @@ public class Wave : MonoBehaviour
         recapScreen.SetValues(quizz.question, nbGoodAnswer, nbWrongAnswer, quizz.Explanation);
         recapScreen.gameObject.SetActive(true);
 
-        // TODO Save stats
     }
 
     private void Init()
