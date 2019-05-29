@@ -9,6 +9,7 @@ TagManager:
   - projectile
   - Quiver
   - Arrow
+  - Hammer
   layers:
   - Default
   - TransparentFX

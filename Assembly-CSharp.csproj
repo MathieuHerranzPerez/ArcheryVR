@@ -71,6 +71,15 @@
     <Compile Include="Assets\Scripts\PhaseManagers\DamManager\DamPhaseManager.cs" />
     <Compile Include="Assets\Scripts\PhaseManagers\DamManager\PowerMaster.cs" />
     <Compile Include="Assets\Scripts\PhaseManagers\DamManager\TargetNumber.cs" />
+    <Compile Include="Assets\Scripts\PhaseManagers\FactoryManager\ArrowOrder.cs" />
+    <Compile Include="Assets\Scripts\PhaseManagers\FactoryManager\Buzzer.cs" />
+    <Compile Include="Assets\Scripts\PhaseManagers\FactoryManager\BuzzerManager.cs" />
+    <Compile Include="Assets\Scripts\PhaseManagers\FactoryManager\BuzzerNum.cs" />
+    <Compile Include="Assets\Scripts\PhaseManagers\FactoryManager\BuzzerReset.cs" />
+    <Compile Include="Assets\Scripts\PhaseManagers\FactoryManager\BuzzerTry.cs" />
+    <Compile Include="Assets\Scripts\PhaseManagers\FactoryManager\Factory.cs" />
+    <Compile Include="Assets\Scripts\PhaseManagers\FactoryManager\FactoryPhaseManager.cs" />
+    <Compile Include="Assets\Scripts\PhaseManagers\FactoryManager\RecipeBoard.cs" />
     <Compile Include="Assets\Scripts\PhaseManagers\PhaseManager.cs" />
     <Compile Include="Assets\Scripts\PhaseManagers\TestManager\QuestionScreen.cs" />
     <Compile Include="Assets\Scripts\PhaseManagers\TestManager\RecapScreen.cs" />
@@ -96,6 +105,8 @@
     <Compile Include="Assets\Scripts\UI\ProfileOptionUI.cs" />
     <Compile Include="Assets\Scripts\UI\ProfileSelectionBtn.cs" />
     <Compile Include="Assets\Scripts\Utils.cs" />
+    <Compile Include="Assets\Scripts\Weapon.cs" />
+    <Compile Include="Assets\Scripts\WeaponManager.cs" />
     <Compile Include="Assets\Scripts\WithoutVR\PlayerController.cs" />
     <Compile Include="Assets\Scripts\WithoutVR\PlayerMotor.cs" />
     <Compile Include="Assets\Sounds\Sound.cs" />

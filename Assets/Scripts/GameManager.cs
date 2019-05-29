@@ -6,6 +6,8 @@ public class GameManager : MonoBehaviour
 {
     [Header("Setup")]
     [SerializeField]
+    private FactoryPhaseManager factoryPhaseManager = default;
+    [SerializeField]
     private DamPhaseManager damPhaseManager = default;
     [SerializeField]
     private TestPhaseManager testPhaseManager = default;
@@ -21,14 +23,15 @@ public class GameManager : MonoBehaviour
     {
         InitForLevel(2);    // todo get level in DB
 
-        // StartFirstPhase();
-         StartSecondPhase();
+        StartFirstPhase();
+        // StartSecondPhase();
         // StartThirdPhase();
     }
 
     private void StartFirstPhase()
     {
-
+        PutPlayerInSpawnPoint(factoryPhaseManager);
+        factoryPhaseManager.StartWithMultiplicationTable(multiplication);
     }
 
     private void StartSecondPhase()

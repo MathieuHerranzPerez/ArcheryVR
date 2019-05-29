@@ -53,7 +53,6 @@ public class ArrowManager : MonoBehaviour
 
     void Update()
     {
-        // todo modifier pour moins moche
         // AttachArrow();
         PullString();
     }

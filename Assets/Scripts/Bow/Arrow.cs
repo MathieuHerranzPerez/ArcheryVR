@@ -58,6 +58,8 @@ public class Arrow : MonoBehaviour
             // freeze the arrow
             rBody.velocity = Vector3.zero;
             rBody.useGravity = false;
+
+            transform.parent = other.transform;
         }
 
         Destroy(gameObject, 3f);

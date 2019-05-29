@@ -19,6 +19,8 @@ public class TestPhaseManager : PhaseManager
 
     public override void StartWithMultiplicationTable(Multiplication multiplication)
     {
+        WeaponManager.Instance.SelectBow();
+
         GameObject waveCloneGO = (GameObject)Instantiate(wavePrefab);
         Wave waveClone = waveCloneGO.GetComponent<Wave>();
 

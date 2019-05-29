@@ -6,15 +6,16 @@ public class TargetNumber : MonoBehaviour
     [SerializeField]
     private ParticleSystem effectPrefabForArrow = default;
     [SerializeField]
-    private int num;
+    private int num = default;
 
     // ---- INTERN ----
-    private PowerMaster powerMaster;
+    /*private PowerMaster powerMaster;
 
     public void SetPowerMaster(PowerMaster powerMaster)
     {
         this.powerMaster = powerMaster;
     }
+    */
 
     void OnTriggerEnter(Collider other)
     {
@@ -22,7 +23,6 @@ public class TargetNumber : MonoBehaviour
         {
             Arrow arrow = other.GetComponent<Arrow>();
             arrow.MultiplyPower(num, effectPrefabForArrow);
-            // powerMaster.NotifyTargetHit(num, effectPrefabForArrow);
         }
     }
 }
