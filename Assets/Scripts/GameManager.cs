@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -10,7 +12,21 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        // todo set the scholar level and difficulty
-        quizzManager.StartSpawningForSchoolAndLevel(ScholarLevel.CM1, 1);
+
+        // récupere profil + grade + progression
+        StartCoroutine(ProfileManager.LoadProfileInformation(1,this));
+
     }
+
+    public void ContinueStart()
+    {
+        Debug.Log("profil : " + ProfileManager.PROFIL.nom); // affD
+        Debug.Log("progression : " + ProfileManager.PROGRESSION.difficulteMaths + " / " + ProfileManager.PROGRESSION.xpmaths); // affD
+        Debug.Log("grade : " + ProfileManager.GRADE.nom); // affD
+
+        quizzManager.StartSpawningForSchoolAndLevel();
+    }
+
+
+    
 }
