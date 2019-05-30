@@ -5,10 +5,16 @@ using Valve.VR;
 [RequireComponent(typeof(BoxCollider))]
 public class Arrow : MonoBehaviour
 {
+    [Header("Setup")]
     public SteamVR_Action_Single squeezeAction = SteamVR_Input.GetAction<SteamVR_Action_Single>("Squeeze");
 
     [SerializeField]
-    private GameObject EffectGO = default;
+    private GameObject effectGO = default;
+    [SerializeField]
+    private Transform firePoint = default;
+
+    [HideInInspector]
+    public int power = 1;
 
     // ---- INTERN ----
     private bool isAttached = false;
@@ -16,44 +22,73 @@ public class Arrow : MonoBehaviour
     private Rigidbody rBody;
     private int nbTriggerActive = 0;
 
+    private Vector3 positionBase;
+    private Quaternion rotationBase;
+
     private void Start()
     {
         Init();
+        positionBase = transform.localPosition;
+        rotationBase = transform.localRotation;
     }
 
     void Update()
     {
         if (isFired)
             FollowGravity();
+        /*else if(!isAttached)
+        {
+            transform.localPosition = positionBase;
+            transform.localRotation = rotationBase;
+        }*/
     }
-
+    /*
     void OnTriggerStay(Collider other)
     {
-        if (nbTriggerActive >= 2)
-            AttachArrow();
+        if (other.gameObject.tag == "Bow")
+        {
+            Debug.Log("IN");
+            if (nbTriggerActive >= 2)
+                AttachArrow();
+        }
     }
 
     void OnTriggerEnter(Collider other)
     {
-        ++nbTriggerActive;
-        if(nbTriggerActive >= 2)
-            AttachArrow();
+        Debug.Log("GGGGGGGGG");
+        if (other.gameObject.tag == "Bow")
+        {
+            Debug.Log("IN");
+            ++nbTriggerActive;
+            if (nbTriggerActive >= 2)
+                AttachArrow();
+        }
     }
 
     void OnTriggerExit(Collider other)
     {
-        --nbTriggerActive;
-    }
+        if (other.gameObject.tag == "Bow")
+        {
+            Debug.Log("IN");
+            --nbTriggerActive;
+        }
+    }*/
 
     void OnCollisionEnter(Collision other)
     {
-        if(other.transform.tag == "Ground")
+        if (isFired)
         {
-            // freeze the arrow
-            rBody.velocity = Vector3.zero;
-            rBody.useGravity = false;
+            if (other.transform.tag == "Ground")
+            {
+                // freeze the arrow
+                rBody.velocity = Vector3.zero;
+                rBody.useGravity = false;
+
+                transform.parent = other.transform;
+            }
+
+            Destroy(gameObject, 3f);
         }
-        Destroy(gameObject, 3f);
     }
 
     public void Fire(Vector3 force)
@@ -65,7 +100,15 @@ public class Arrow : MonoBehaviour
         rBody.velocity = force;
         rBody.useGravity = true;
 
-        EffectGO.SetActive(true);
+        effectGO.SetActive(true);
+    }
+
+    public void MultiplyPower(int power, ParticleSystem particlePrefab)
+    {
+        Debug.Log("Multiply : " + power);
+        this.power *= power;
+        this.power = this.power > 999 ? 999 : this.power;
+        Instantiate(particlePrefab, firePoint);
     }
 
     private void FollowGravity()
@@ -74,14 +117,16 @@ public class Arrow : MonoBehaviour
     }
 
     //https://www.youtube.com/watch?v=bn8eMxBcI70
-    private void AttachArrow()
+    public bool TryAttachArrow()
     {
         float triggerValue = squeezeAction.GetAxis(SteamVR_Input_Sources.RightHand);
         if(!isAttached && triggerValue > 0.05f)
         {
             isAttached = true;
             ArrowManager.Instance.AttachBowToArrow();
+            return true;
         }
+        return false;
     }
 
     private void Init()

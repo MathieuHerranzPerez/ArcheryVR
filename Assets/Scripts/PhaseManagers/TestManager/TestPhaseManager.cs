@@ -3,22 +3,53 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class QuizzManager : MonoBehaviour
+public class TestPhaseManager : PhaseManager
 {
-    [Range(1, 20)]
-    [SerializeField]
-    private int nbWave = 5;
-
     [Header("Setup")]
     [SerializeField]
     private GameObject wavePrefab = default;
-    [SerializeField]
-    private QuizzEditorWrap quizzWrap = default;
+
+    //[SerializeField]
+    //private QuizzEditorWrap quizzWrap = default;
 
     // ---- INTERN ----
-    private int currentWaveNum = 0;
-    private List<List<Quizz>> listAllQuizzScholarLevelAndDifficulty; 
+    // private int currentWaveNum = 0;
+    // private List<List<Quizz>> listAllQuizzScholarLevelAndDifficulty; 
 
+
+    public override void StartWithMultiplicationTable(Multiplication multiplication)
+    {
+        WeaponManager.Instance.SelectBow();
+
+        GameObject waveCloneGO = (GameObject)Instantiate(wavePrefab);
+        Wave waveClone = waveCloneGO.GetComponent<Wave>();
+
+        waveClone.SetQuizzFromMananger(multiplication, this);
+    }
+
+    public void NotifyWaveEnd(int nbGoodAnswer, int nbWrongAnswer)
+    {
+        // todo save, hide bow and unlock raycast for UI
+        Debug.Log("TestPhaseManager : good : " + nbGoodAnswer + ", wrong : " + nbWrongAnswer);
+    }
+
+    public void NotifyWaveDestroyed()
+    {
+        // todo
+
+    }
+
+    /*
+    private void SpawnWave()
+    {
+        GameObject waveCloneGO = (GameObject)Instantiate(wavePrefab);
+        Wave waveClone = waveCloneGO.GetComponent<Wave>();
+
+        waveClone.SetQuizzFromMananger(GetRandomQuizz(), this);
+    }
+    
+
+    
     public void StartSpawningForSchoolAndLevel(ScholarLevel scholarLevel, int difficulty)
     {
         LoadQuestions();
@@ -27,28 +58,17 @@ public class QuizzManager : MonoBehaviour
         DisplayListQuizzes(); // affD
 
         SpawnWave();
-    }
+    } 
 
 
-    public void NotifyWaveEnd()
-    {
-        ++currentWaveNum;
-        if(currentWaveNum < nbWave)
-        {
-            SpawnWave();
-        }
-        else
-        {
-            // TODO
-        }
-    }
 
-
+   
     private void LoadQuestions()
     {
         quizzWrap.quizzContainer = SaveJsonSystem.LoadQuizzes();
     }
 
+    
     private void GetQuizzesForScolarLevelAndDifficulty(ScholarLevel scholarLevel, int difficulty)
     {
         this.listAllQuizzScholarLevelAndDifficulty = new List<List<Quizz>>();
@@ -78,7 +98,8 @@ public class QuizzManager : MonoBehaviour
                 this.listAllQuizzScholarLevelAndDifficulty.Add(listQuizzS);
         }
     }
-
+    
+    
     // affD
     private void DisplayListQuizzes()
     {
@@ -91,14 +112,7 @@ public class QuizzManager : MonoBehaviour
         }
     }
 
-    private void SpawnWave()
-    {
-        GameObject waveCloneGO = (GameObject)Instantiate(wavePrefab);
-        Wave waveClone = waveCloneGO.GetComponent<Wave>();
-
-        waveClone.SetQuizzFromMananger(GetRandomQuizz(), this);
-    }
-
+    
     private Quizz GetRandomQuizz()
     {
         if (listAllQuizzScholarLevelAndDifficulty.Count == 0)
@@ -116,5 +130,5 @@ public class QuizzManager : MonoBehaviour
         }
 
         return res;
-    }
+    }*/
 }
