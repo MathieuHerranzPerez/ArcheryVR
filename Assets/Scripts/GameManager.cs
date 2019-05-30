@@ -6,46 +6,55 @@ public class GameManager : MonoBehaviour
 {
     [Header("Setup")]
     [SerializeField]
-    private FactoryPhaseManager factoryPhaseManager = default;
-    [SerializeField]
-    private DamPhaseManager damPhaseManager = default;
-    [SerializeField]
-    private TestPhaseManager testPhaseManager = default;
+    private PhaseManager[] listPhaseManager = new PhaseManager[3];
 
     [SerializeField]
     private GameObject player = default;
 
     // ---- INTERN ----
     private Multiplication multiplication;
+    private int currentPhaseIndex;
 
 
     void Start()
     {
         InitForLevel(2);    // todo get level in DB
 
-        StartFirstPhase();
-        // StartSecondPhase();
-        // StartThirdPhase();
+        currentPhaseIndex = 0;
+        StartPhase(currentPhaseIndex);
     }
 
-    private void StartFirstPhase()
+    public void GoToPreviousPhase()
     {
-        PutPlayerInSpawnPoint(factoryPhaseManager);
-        factoryPhaseManager.StartWithMultiplicationTable(multiplication);
+        if (currentPhaseIndex > 0)
+        {
+            --currentPhaseIndex;
+            StartPhase(currentPhaseIndex);
+        }
+        else
+        {
+            throw new System.Exception("You try to access a phase that does not exist");
+        }
     }
 
-    private void StartSecondPhase()
+    public void GoToNextPhase()
     {
-        PutPlayerInSpawnPoint(damPhaseManager);
-        damPhaseManager.StartWithMultiplicationTable(multiplication);
+        if (currentPhaseIndex < listPhaseManager.Length - 1)
+        {
+            ++currentPhaseIndex;
+            StartPhase(currentPhaseIndex);
+        }
+        else
+        {
+            throw new System.Exception("You try to access a phase that does not exist");
+        }
     }
 
-    private void StartThirdPhase()
+    private void StartPhase(int phaseIndex)
     {
-        PutPlayerInSpawnPoint(testPhaseManager);
-        testPhaseManager.StartWithMultiplicationTable(multiplication);
+        PutPlayerInSpawnPoint(listPhaseManager[phaseIndex]);
+        listPhaseManager[phaseIndex].StartWithMultiplicationTable(multiplication);
     }
-
 
     private void InitForLevel(int level)
     {

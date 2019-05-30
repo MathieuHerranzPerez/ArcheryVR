@@ -26,6 +26,7 @@ public class Factory : MonoBehaviour
 
     public void InitWithValuesNumAndManager(int[] listValues, int num, FactoryPhaseManager factoryPhaseManager)
     {
+        currentIndex = 0;
         this.factoryPhaseManager = factoryPhaseManager;
 
         this.listValues = new int[3];

@@ -27,5 +27,7 @@ public class BuzzerManager : MonoBehaviour
     public void NotifyBuzzerTry()
     {
         factory.CheckResult(currentNumber);
+        currentNumber = 0;
+        textCurrentNumber.text = currentNumber.ToString();
     }
 }

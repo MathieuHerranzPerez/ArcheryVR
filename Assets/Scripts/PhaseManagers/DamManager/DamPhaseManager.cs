@@ -9,7 +9,7 @@ public class DamPhaseManager : PhaseManager
     private Dam dam = default;
     [Header("Power text")]
     [SerializeField]
-    private GameObject CanvasTextGO = default;
+    private GameObject canvasTextGO = default;
     [SerializeField]
     private Text textPowerCounter = default;
 
@@ -35,9 +35,10 @@ public class DamPhaseManager : PhaseManager
     public override void StartWithMultiplicationTable(Multiplication multiplication)
     {
         WeaponManager.Instance.SelectBow();
+        lastMultiplication = multiplication;
 
         isRunning = true;
-        CanvasTextGO.SetActive(true);
+        canvasTextGO.SetActive(true);
 
         List<int> listMult = new List<int>();
         for(int i = 0; i < 12; ++i)
@@ -59,10 +60,9 @@ public class DamPhaseManager : PhaseManager
 
     public void NotifyDamDestroyed()
     {
-        // todo
-        Debug.Log("Dam destroyed !");
-
-        CanvasTextGO.SetActive(false);
+        canvasTextGO.SetActive(false);
         isRunning = false;
+
+        endScreenGO.SetActive(true);
     }
 }

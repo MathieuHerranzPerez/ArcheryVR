@@ -6,6 +6,8 @@ public class DamPart : MonoBehaviour
     [Header("Setup")]
     [SerializeField]
     private Text textPower = default;
+    [SerializeField]
+    private ParticleSystem particleSystemExplosion = default;
 
     // ---- INTERN ----
     private Dam dam;
@@ -36,7 +38,8 @@ public class DamPart : MonoBehaviour
     private void Destroy()
     {
         dam.NotifyDestruction(this);
-        // todo gfx
+        ParticleSystem ps = (ParticleSystem) Instantiate(particleSystemExplosion, transform.position, transform.rotation);
+        Destroy(ps, 2f);
         Destroy(gameObject);
     }
 }
