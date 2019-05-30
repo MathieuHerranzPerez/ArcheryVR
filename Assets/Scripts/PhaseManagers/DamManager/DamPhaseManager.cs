@@ -40,9 +40,9 @@ public class DamPhaseManager : PhaseManager
         CanvasTextGO.SetActive(true);
 
         List<int> listMult = new List<int>();
-        for(int i = 0; i < 13; ++i)
+        for(int i = 0; i < 12; ++i)
         {
-            listMult.Add(i);
+            listMult.Add(i+1);
         }
 
         int[] listUsedValues = new int[dam.GetNbParts()];

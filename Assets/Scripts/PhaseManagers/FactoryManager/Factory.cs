@@ -36,7 +36,8 @@ public class Factory : MonoBehaviour
         }
         recipeBoard.SetRecipe(listValues[0], listValues[1], listValues[2]);
 
-        tips.Replace("%", listValues[currentIndex].ToString());
+        tips = tips.Replace("%", num.ToString());
+        textTips.text = tips;
 
         StartGame();
     }

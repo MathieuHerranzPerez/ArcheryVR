@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class FactoryPhaseManager : PhaseManager
@@ -15,9 +14,9 @@ public class FactoryPhaseManager : PhaseManager
         WeaponManager.Instance.SelectHammer();
 
         List<int> listMult = new List<int>();
-        for (int i = 0; i < 13; ++i)
+        for (int i = 0; i < 12; ++i)
         {
-            listMult.Add(i);
+            listMult.Add(i+1);
         }
 
         int[] listUsedValues = new int[3];

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class TargetNumber : MonoBehaviour
 {
@@ -9,20 +10,38 @@ public class TargetNumber : MonoBehaviour
     private int num = default;
 
     // ---- INTERN ----
-    /*private PowerMaster powerMaster;
-
-    public void SetPowerMaster(PowerMaster powerMaster)
-    {
-        this.powerMaster = powerMaster;
-    }
-    */
+    private float timeBetweenCollide = 1f;
+    private bool canCollide = true;
+    private bool hasExit = true;
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Arrow")
+        if(canCollide && hasExit)
         {
-            Arrow arrow = other.GetComponent<Arrow>();
-            arrow.MultiplyPower(num, effectPrefabForArrow);
+            if (other.gameObject.tag == "Arrow")
+            {
+                Arrow arrow = other.GetComponent<Arrow>();
+                arrow.MultiplyPower(num, effectPrefabForArrow);
+                hasExit = false;
+                canCollide = false;
+                StartCoroutine(StartDelay());
+            }
         }
     }
+
+    void OnTriggerExit(Collider other)
+    {
+        hasExit = true;
+    }
+
+    private IEnumerator StartDelay()
+    {
+        float time = 0f;
+        while(time < timeBetweenCollide)
+        {
+            time += Time.deltaTime;
+            yield return null;
+        }
+        canCollide = true;
+    } 
 }
