@@ -561,6 +561,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textPower: {fileID: 5145952281831924966}
+  particleSystemExplosion: {fileID: 0}
+  audioWhenDestroy: {fileID: 8300000, guid: 63cab8900be475340b799367f6f8f584, type: 3}
+  audioPlayerPrefab: {fileID: 8735269548402984163, guid: c1589dcf960a2644ca19dd6daca68907,
+    type: 3}
+  volume: 0.6
 --- !u!64 &444880921317943533
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -588,6 +593,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textPower: {fileID: 5432417119911352938}
+  particleSystemExplosion: {fileID: 198771263646604812, guid: 2fed052d6f07b9740a5a061fee65b6d9,
+    type: 3}
+  audioWhenDestroy: {fileID: 8300000, guid: 63cab8900be475340b799367f6f8f584, type: 3}
+  audioPlayerPrefab: {fileID: 8735269548402984163, guid: c1589dcf960a2644ca19dd6daca68907,
+    type: 3}
+  volume: 0.6
 --- !u!64 &444880921574902257
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -615,6 +626,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textPower: {fileID: 7065978657836228630}
+  particleSystemExplosion: {fileID: 0}
+  audioWhenDestroy: {fileID: 8300000, guid: 63cab8900be475340b799367f6f8f584, type: 3}
+  audioPlayerPrefab: {fileID: 8735269548402984163, guid: c1589dcf960a2644ca19dd6daca68907,
+    type: 3}
+  volume: 0.6
 --- !u!65 &721077990
 BoxCollider:
   m_ObjectHideFlags: 0

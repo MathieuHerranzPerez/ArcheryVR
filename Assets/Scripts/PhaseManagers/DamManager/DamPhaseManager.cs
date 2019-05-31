@@ -63,6 +63,7 @@ public class DamPhaseManager : PhaseManager
         canvasTextGO.SetActive(false);
         isRunning = false;
 
+        WeaponManager.Instance.SelectPointer();
         endScreenGO.SetActive(true);
     }
 }

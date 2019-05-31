@@ -35,6 +35,7 @@ public class FactoryPhaseManager : PhaseManager
     public void NotifyEnd()
     {
         Debug.Log("Phase ended");
-        // todo
+        WeaponManager.Instance.SelectPointer();
+        endScreenGO.SetActive(true);
     }
 }

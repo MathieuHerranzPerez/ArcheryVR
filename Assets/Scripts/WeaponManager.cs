@@ -13,7 +13,9 @@ public class WeaponManager : MonoBehaviour
     [SerializeField]
     private GameObject quiverGO = default;
 
-    // todo laser
+    [Header("Pointer")]
+    [SerializeField]
+    private GameObject pointerGO = default;
 
     private void Awake()
     {
@@ -33,9 +35,10 @@ public class WeaponManager : MonoBehaviour
         hammerGO.SetActive(true);
     }
 
-    public void SelectCursor()
+    public void SelectPointer()
     {
         ResetWeapon();
+        pointerGO.SetActive(true);
     }
 
     private void ResetWeapon()
@@ -45,6 +48,6 @@ public class WeaponManager : MonoBehaviour
 
         hammerGO.SetActive(false);
 
-        // cursorGO.SetActive(false);
+        pointerGO.SetActive(false);
     }
 }

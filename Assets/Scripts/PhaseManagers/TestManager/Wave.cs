@@ -259,7 +259,6 @@ public class Wave : MonoBehaviour
     {
         question = "Eclate les multiples de " + multiplication.num + " !";
 
-
         foreach (Transform t in spawnPointContainer.transform)
         {
             listSpawnPoint.Add(t.GetComponent<SpawnPoint>());

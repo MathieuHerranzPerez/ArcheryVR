@@ -96,6 +96,9 @@
     <Compile Include="Assets\Scripts\Quizz\QuizzEditorWrap.cs" />
     <Compile Include="Assets\Scripts\Quizz\SaveJsonSystem.cs" />
     <Compile Include="Assets\Scripts\SceneFader.cs" />
+    <Compile Include="Assets\Scripts\Sound\AudioPlayer.cs" />
+    <Compile Include="Assets\Scripts\Sound\Sound.cs" />
+    <Compile Include="Assets\Scripts\Sound\SoundManager.cs" />
     <Compile Include="Assets\Scripts\SpawnPoint.cs" />
     <Compile Include="Assets\Scripts\Sphere\Sphere.cs" />
     <Compile Include="Assets\Scripts\Sphere\SphereMovement.cs" />
@@ -109,12 +112,11 @@
     <Compile Include="Assets\Scripts\UI\ProfileSelectionBtn.cs" />
     <Compile Include="Assets\Scripts\Utils.cs" />
     <Compile Include="Assets\Scripts\VRInputModule.cs" />
+    <Compile Include="Assets\Scripts\Water.cs" />
     <Compile Include="Assets\Scripts\Weapon.cs" />
     <Compile Include="Assets\Scripts\WeaponManager.cs" />
     <Compile Include="Assets\Scripts\WithoutVR\PlayerController.cs" />
     <Compile Include="Assets\Scripts\WithoutVR\PlayerMotor.cs" />
-    <Compile Include="Assets\Sounds\Sound.cs" />
-    <Compile Include="Assets\Sounds\SoundManager.cs" />
     <None Include="Assets\PolygonNature\Shaders\SyntyStudios_Trees.shader" />
     <None Include="Assets\PolygonNature\Shaders\VS_indirect.cginc" />
     <None Include="Assets\PolygonNature\Shaders\SyntyStudios_Moss.shader" />

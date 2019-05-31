@@ -13,6 +13,15 @@ public class Arrow : MonoBehaviour
     [SerializeField]
     private Transform firePoint = default;
 
+    [Header("Sound")]
+    [SerializeField]
+    private AudioClip audioWhenFire = default;
+    [SerializeField]
+    private GameObject audioPlayerPrefab = default;
+    [Range(0.05f, 1f)]
+    [SerializeField]
+    private float volume = 0.6f;
+
     [HideInInspector]
     public int power = 1;
 
@@ -101,6 +110,12 @@ public class Arrow : MonoBehaviour
         rBody.useGravity = true;
 
         effectGO.SetActive(true);
+
+        // invoke another gameobject to play the sound
+        GameObject soundGO = (GameObject)Instantiate(audioPlayerPrefab, transform.position, transform.rotation, transform);
+        AudioPlayer _audioPlayer = soundGO.GetComponent<AudioPlayer>();
+        _audioPlayer.Play(audioWhenFire, volume);
+        Destroy(soundGO, 1.5f);
     }
 
     public void MultiplyPower(int power, ParticleSystem particlePrefab)
