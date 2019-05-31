@@ -32,4 +32,9 @@ public class MultiplicationTable : MonoBehaviour
 
         return resList[Random.Range(0, resList.Count)];
     }
+
+    public Multiplication GetRandomMultiplication()
+    {
+        return listMultiplication[Random.Range(0, listMultiplication.Length)];
+    }
 }
