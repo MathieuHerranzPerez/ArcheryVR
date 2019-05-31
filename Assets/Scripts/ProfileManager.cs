@@ -96,7 +96,6 @@ public class ProfileManager : MonoBehaviour
                 string json = webrequest.downloadHandler.text;
                 grade = JsonUtility.FromJson<Grade>(json);
             }
-
         }
     }
 
@@ -104,6 +103,9 @@ public class ProfileManager : MonoBehaviour
 
     public void SaveRes(float res)
     {
+        // arrondi a 1 décimale
+        res = (float) Math.Round((double) res,1);
+
         SendResult(res);
         SendProgression(res);
     }
@@ -112,21 +114,26 @@ public class ProfileManager : MonoBehaviour
     {
         // ajoute le resultat dans l'historique des résultats
 
-        Resultat res = new Resultat();
-
-        res.profilId = profil.id;
-        res.gradeId = progression.gradeId;
-        res.dateResultat = DateTime.Now;
-        res.difficulteMaths = progression.difficulteMaths;
-        res.resMaths = result;
-        res.difficulteFrancais = progression.difficulteFrancais;
-        res.resFrancais = 0;
-        res.difficulteAnglais = progression.difficulteAnglais;
-        res.resAnglais = 0;
+        Resultat res = new Resultat
+        {
+            profilId = profil.id,
+            gradeId = progression.gradeId,
+            difficulteMaths = progression.difficulteMaths,
+            resMaths = result,
+            difficulteFrancais = progression.difficulteFrancais,
+            resFrancais = 0,
+            difficulteAnglais = progression.difficulteAnglais,
+            resAnglais = 0
+        };
 
         string json = JsonUtility.ToJson(res);
+        
+        UnityWebRequest wwwRes = UnityWebRequest.Put("https://archeryvr.azurewebsites.net/api/ResultatAPI", json);
+        wwwRes.SetRequestHeader("Content-Type", "application/json");
+        wwwRes.method = "POST";
+        wwwRes.SendWebRequest();
 
-        UnityWebRequest wwwRes = UnityWebRequest.Post("https://archeryvr.azurewebsites.net/api/ResultatAPI", json);
+
     }
 
     private void SendProgression(float result)
@@ -158,12 +165,14 @@ public class ProfileManager : MonoBehaviour
         string json = JsonUtility.ToJson(progression);
         Debug.Log("res send : " + json);
         UnityWebRequest www = UnityWebRequest.Put("https://archeryvr.azurewebsites.net/api/ProgressionAPI/" + profil.id, json);
+        www.SetRequestHeader("Content-Type", "application/json");
+        www.SendWebRequest();
 
-        Debug.Log("Result sent");
     }
 }
 
-// {"gradeId":1,"profilId":1,"difficulteMaths":1,"xpmaths":3,"difficulteFrancais":0,"xpfrancais":0,"difficulteAnglais":0,"xpanglais":0}
+// {"gradeId":1,"profilId":1,"difficulteMaths":1,"xpmaths":3,"difficulteFrancais":0,"xpfrancais":0,"difficulteAnglais":0,"xpanglais":0}
+
 
 [Serializable]
 public partial class Progression
@@ -183,10 +192,8 @@ public partial class Progression
 [Serializable]
 public partial class Resultat
 {
-    public int id;
     public int profilId;
     public int gradeId;
-    public DateTime dateResultat;
     public int difficulteMaths;
     public double resMaths;
     public int difficulteFrancais;
