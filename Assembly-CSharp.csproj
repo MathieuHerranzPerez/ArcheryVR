@@ -89,6 +89,7 @@
     <Compile Include="Assets\Scripts\PhaseManagers\TestManager\Wave.cs" />
     <Compile Include="Assets\Scripts\Pointer.cs" />
     <Compile Include="Assets\Scripts\Profile.cs" />
+    <Compile Include="Assets\Scripts\ProfileManager.cs" />
     <Compile Include="Assets\Scripts\Quizz\Multiplication.cs" />
     <Compile Include="Assets\Scripts\Quizz\MultiplicationTable.cs" />
     <Compile Include="Assets\Scripts\Quizz\Quizz.cs" />

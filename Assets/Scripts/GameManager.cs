@@ -1,6 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -18,16 +21,26 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        foreach(PhaseManager pm in listPhaseManager)
+        // récupere profil + grade + progression
+        StartCoroutine(ProfileManager.LoadProfileInformation(1,this));  // todo changer ID to connected player
+    }
+
+    public void ContinueStart()
+    {
+        Debug.Log("profil : " + ProfileManager.PROFIL.nom); // affD
+        Debug.Log("progression : " + ProfileManager.PROGRESSION.difficulteMaths + " / " + ProfileManager.PROGRESSION.xpmaths); // affD
+        Debug.Log("grade : " + ProfileManager.GRADE.nom); // affD
+
+        foreach (PhaseManager pm in listPhaseManager)
         {
             pm.SetGameManager(this);
         }
 
-        InitForLevel(2);    // todo get level in DB
+        InitForLevel(ProfileManager.PROGRESSION.difficulteMaths);
 
         currentPhaseIndex = 0;
         StartPhase(currentPhaseIndex);
-    }
+    }  
 
     public void GoToPreviousPhase()
     {
