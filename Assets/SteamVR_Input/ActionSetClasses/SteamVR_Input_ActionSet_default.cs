@@ -89,11 +89,11 @@ namespace Valve.VR
             }
         }
         
-        public virtual SteamVR_Action_Boolean Arrow
+        public virtual SteamVR_Action_Single GrabArrow
         {
             get
             {
-                return SteamVR_Actions.default_Arrow;
+                return SteamVR_Actions.default_GrabArrow;
             }
         }
         

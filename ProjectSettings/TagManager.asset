@@ -4,9 +4,13 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Bullet
   - FxTemporaire
   - Ground
+  - projectile
+  - Quiver
+  - Arrow
+  - Hammer
+  - Bow
   layers:
   - Default
   - TransparentFX

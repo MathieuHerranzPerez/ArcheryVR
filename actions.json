@@ -41,8 +41,8 @@
       "requirement": "optional"
     },
     {
-      "name": "/actions/default/in/Arrow",
-      "type": "boolean"
+      "name": "/actions/default/in/GrabArrow",
+      "type": "vector1"
     },
     {
       "name": "/actions/default/out/Haptic",
