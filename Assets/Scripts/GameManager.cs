@@ -18,6 +18,11 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        foreach(PhaseManager pm in listPhaseManager)
+        {
+            pm.SetGameManager(this);
+        }
+
         InitForLevel(2);    // todo get level in DB
 
         currentPhaseIndex = 0;

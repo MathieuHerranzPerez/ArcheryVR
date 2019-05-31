@@ -11,6 +11,8 @@ public class FactoryPhaseManager : PhaseManager
 
     public override void StartWithMultiplicationTable(Multiplication multiplication)
     {
+        base.StartWithMultiplicationTable(multiplication);
+
         WeaponManager.Instance.SelectHammer();
 
         List<int> listMult = new List<int>();

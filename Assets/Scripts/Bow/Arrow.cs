@@ -93,6 +93,7 @@ public class Arrow : MonoBehaviour
                 rBody.velocity = Vector3.zero;
                 rBody.useGravity = false;
 
+                GetComponent<BoxCollider>().enabled = false;
                 transform.parent = other.transform;
             }
 
@@ -120,7 +121,6 @@ public class Arrow : MonoBehaviour
 
     public void MultiplyPower(int power, ParticleSystem particlePrefab)
     {
-        Debug.Log("Multiply : " + power);
         this.power *= power;
         this.power = this.power > 999 ? 999 : this.power;
         Instantiate(particlePrefab, firePoint);

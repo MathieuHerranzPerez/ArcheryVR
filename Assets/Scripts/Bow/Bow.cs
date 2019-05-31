@@ -9,11 +9,9 @@ public class Bow : MonoBehaviour
     public void NotifyHitCollider(BowPart bowPart)
     {
         lastBowPart = bowPart;
-        Debug.Log("collide : " + nbCollide);
         ++nbCollide;
         if(nbCollide >= 2)
         {
-            Debug.Log("Attach");
             //if(bowPart.AttachArrow())
                 //nbCollide = 0;
         }

@@ -6,19 +6,19 @@ public class Dam : MonoBehaviour
     [Header("Setup")]
     [SerializeField]
     private GameObject damPartContainerGO = default;
+    [SerializeField]
+    private GameObject[] listDamPartPrefab = new GameObject[3];
+    [SerializeField]
+    private Transform[] listSpawnPointDamPart = new Transform[3];
 
     // ---- INTERN ----
     private DamPhaseManager damPhaseManager;
     private List<DamPart> listDamPart = new List<DamPart>();
 
-    void Start()
-    {
-        Init();
-    }
-
     public void InitWithValuesAndManager(int[] listValues, DamPhaseManager damPhaseManager)
     {
         this.damPhaseManager = damPhaseManager;
+        Init();
 
         if (listDamPart.Count > listValues.Length)
             throw new System.Exception("Not enought values compared with the number of dam parts");
@@ -39,18 +39,26 @@ public class Dam : MonoBehaviour
             damPhaseManager.NotifyDamDestroyed();
         }
     }
-
+    
     private void Init()
     {
-        foreach(Transform t in damPartContainerGO.transform)
+        /*
+        foreach(Transform t in transform)
         {
-            DamPart dp = t.GetComponent<DamPart>();
+            Destroy(t.gameObject);
+        }*/
+
+        for (int i = 0; i < listDamPartPrefab.Length; ++i)
+        {
+            GameObject damPartCloneGO = (GameObject)Instantiate(listDamPartPrefab[i], listSpawnPointDamPart[i].position, listSpawnPointDamPart[i].rotation, transform);
+
+            DamPart dp = damPartCloneGO.GetComponent<DamPart>();
             listDamPart.Add(dp);
         }
     }
 
     public int GetNbParts()
     {
-        return listDamPart.Count;
+        return listSpawnPointDamPart.Length;
     }
 }

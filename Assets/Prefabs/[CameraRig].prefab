@@ -596,6 +596,7 @@ MonoBehaviour:
   hammerGO: {fileID: 2020936244326681597}
   bowGO: {fileID: 8339580830309226680}
   quiverGO: {fileID: 1756692409595618188}
+  pointerGO: {fileID: 8761008138656971828}
 --- !u!1 &2227975314976158430
 GameObject:
   m_ObjectHideFlags: 0
@@ -1275,13 +1276,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8724267117261204719, guid: 061af45f2588982408b2cac38ddd81ed,
-        type: 3}
-      propertyPath: inputModule
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 061af45f2588982408b2cac38ddd81ed, type: 3}
+--- !u!1 &8761008138656971828 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5638026386549869255, guid: 061af45f2588982408b2cac38ddd81ed,
+    type: 3}
+  m_PrefabInstance: {fileID: 4011318977763604211}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7045631189216399513 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6227367124097689194, guid: 061af45f2588982408b2cac38ddd81ed,
