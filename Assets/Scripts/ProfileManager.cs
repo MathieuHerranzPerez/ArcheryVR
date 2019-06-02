@@ -96,7 +96,6 @@ public class ProfileManager : MonoBehaviour
                 string json = webrequest.downloadHandler.text;
                 grade = JsonUtility.FromJson<Grade>(json);
             }
-
         }
     }
 
@@ -127,6 +126,8 @@ public class ProfileManager : MonoBehaviour
         string json = JsonUtility.ToJson(res);
 
         UnityWebRequest wwwRes = UnityWebRequest.Post("https://archeryvr.azurewebsites.net/api/ResultatAPI", json);
+        wwwRes.SetRequestHeader("Content-Type", "application/json");
+        wwwRes.SendWebRequest();
     }
 
     private void SendProgression(float result)
@@ -158,8 +159,9 @@ public class ProfileManager : MonoBehaviour
         string json = JsonUtility.ToJson(progression);
         Debug.Log("res send : " + json);
         UnityWebRequest www = UnityWebRequest.Put("https://archeryvr.azurewebsites.net/api/ProgressionAPI/" + profil.id, json);
+        www.SetRequestHeader("Content-Type", "application/json");
+        www.SendWebRequest();
 
-        Debug.Log("Result sent");
     }
 }
 
