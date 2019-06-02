@@ -167,11 +167,21 @@ public class ProfileManager : MonoBehaviour
         UnityWebRequest www = UnityWebRequest.Put("https://archeryvr.azurewebsites.net/api/ProgressionAPI/" + profil.id, json);
         www.SetRequestHeader("Content-Type", "application/json");
         www.SendWebRequest();
+    }
+
+
+    private void SendProfile()
+    {
+        // mets à jour le profil de l'utilisateur
+
+        string json = JsonUtility.ToJson(ProfileManager.Instance.profil);
+
+        UnityWebRequest wwwRes = UnityWebRequest.Put("https://archeryvr.azurewebsites.net/api/ProfilAPI/" + ProfileManager.Instance.profil.id, json);
+        wwwRes.SetRequestHeader("Content-Type", "application/json");
+        wwwRes.SendWebRequest();
 
     }
 }
-
-// {"gradeId":1,"profilId":1,"difficulteMaths":1,"xpmaths":3,"difficulteFrancais":0,"xpfrancais":0,"difficulteAnglais":0,"xpanglais":0}
 
 
 [Serializable]
@@ -200,7 +210,6 @@ public partial class Resultat
     public double resFrancais;
     public int difficulteAnglais;
     public double resAnglais;
-
 }
 
 [Serializable]
