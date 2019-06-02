@@ -1,6 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -18,11 +21,26 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        InitForLevel(2);    // todo get level in DB
+        // récupere profil + grade + progression
+        StartCoroutine(ProfileManager.Instance.LoadProfileInformation(1, this));  // todo changer ID to connected player
+    }
+
+    public void ContinueStart()
+    {
+        Debug.Log("profil : " + ProfileManager.Instance.profil.nom); // affD
+        Debug.Log("progression : " + ProfileManager.Instance.progression.difficulteMaths + " / " + ProfileManager.Instance.progression.xpmaths); // affD
+        Debug.Log("grade : " + ProfileManager.Instance.grade.nom); // affD
+
+        foreach (PhaseManager pm in listPhaseManager)
+        {
+            pm.SetGameManager(this);
+        }
+
+        InitForLevel(ProfileManager.Instance.progression.difficulteMaths);
 
         currentPhaseIndex = 0;
         StartPhase(currentPhaseIndex);
-    }
+    }  
 
     public void GoToPreviousPhase()
     {
@@ -58,7 +76,11 @@ public class GameManager : MonoBehaviour
 
     private void InitForLevel(int level)
     {
-        multiplication = MultiplicationTable.Instance.GetRandomMultiplicationForLevel(level);
+        if(level <= 4)
+            multiplication = MultiplicationTable.Instance.GetRandomMultiplicationForLevel(level);
+        else    // 5
+            multiplication = MultiplicationTable.Instance.GetRandomMultiplication();
+
         Debug.Log("Multiplication chosen : " + multiplication.num);
     }
 

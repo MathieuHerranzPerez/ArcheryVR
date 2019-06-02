@@ -22,6 +22,7 @@ public class TutoManager : MonoBehaviour
 
     void Start()
     {
+        WeaponManager.Instance.SelectBow();
         // display how to get an arrow
         screenTutoGetArrow.SetActive(true);
     }
@@ -129,13 +130,13 @@ public class TutoManager : MonoBehaviour
             state = State.SCORE;
             screenTutoShootSphere.SetActive(false);
             questionsContainerGO.SetActive(false);
+
+            WeaponManager.Instance.SelectPointer();
         }
         else if (state == State.SCORE)
         {
             
         }
-
-        Debug.Log("State : " + state);
     }
 
     public void LeaveTuto()

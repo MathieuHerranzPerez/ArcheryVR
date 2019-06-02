@@ -11,6 +11,8 @@ public class FactoryPhaseManager : PhaseManager
 
     public override void StartWithMultiplicationTable(Multiplication multiplication)
     {
+        base.StartWithMultiplicationTable(multiplication);
+
         WeaponManager.Instance.SelectHammer();
 
         List<int> listMult = new List<int>();
@@ -35,6 +37,7 @@ public class FactoryPhaseManager : PhaseManager
     public void NotifyEnd()
     {
         Debug.Log("Phase ended");
-        // todo
+        WeaponManager.Instance.SelectPointer();
+        endScreenGO.SetActive(true);
     }
 }

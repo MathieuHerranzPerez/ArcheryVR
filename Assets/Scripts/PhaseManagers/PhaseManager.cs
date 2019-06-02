@@ -11,7 +11,10 @@ public abstract class PhaseManager : MonoBehaviour
     protected GameManager gameManager;
     protected Multiplication lastMultiplication;
 
-    public abstract void StartWithMultiplicationTable(Multiplication multiplication);
+    public virtual void StartWithMultiplicationTable(Multiplication multiplication)
+    {
+        lastMultiplication = multiplication;
+    }
 
     public void SetGameManager(GameManager gameManager)
     {

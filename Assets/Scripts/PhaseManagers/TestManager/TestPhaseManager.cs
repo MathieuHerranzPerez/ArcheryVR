@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class TestPhaseManager : PhaseManager
 {
@@ -31,6 +28,11 @@ public class TestPhaseManager : PhaseManager
     {
         // todo save, hide bow and unlock raycast for UI
         Debug.Log("TestPhaseManager : good : " + nbGoodAnswer + ", wrong : " + nbWrongAnswer);
+        WeaponManager.Instance.SelectPointer();
+
+        float res = nbGoodAnswer * 100 / (nbGoodAnswer + nbWrongAnswer);
+
+        ProfileManager.Instance.SaveRes(res);
     }
 
     public void NotifyWaveDestroyed()

@@ -151,7 +151,7 @@ public class Wave : MonoBehaviour
     private void StartSpawn()
     {
         if (listSpawnPoint.Count < nbGoodAnswerToGenerate + nbWrongAnswerToGenerate)
-            throw new Exception("Not enought spawn points to handle all the answers");
+            throw new Exception("Not enough spawn points to handle all the answers");
 
         // tmp list to shuffle the answers
         List<Tuple<string, bool>> listQuizzToSpawn = new List<Tuple<string, bool>>();
@@ -183,19 +183,18 @@ public class Wave : MonoBehaviour
         
         if (isCorrectAnswer)
         {
-            for (int i = 0; i <= nbGoodAnswerToGenerate; ++i)
+            for (int i = 0; i < nbGoodAnswerToGenerate; ++i)
             {
                 int randomIndex = UnityEngine.Random.Range(0, listMult.Count);
                 res.Add(listMult[randomIndex] * multiplication.num);
 
                 listMult.RemoveAt(randomIndex);
-
             }
         }
         else
         {
             listMult.Remove(multiplication.num);
-            for (int i = 0; i <= nbWrongAnswerToGenerate; ++i)
+            for (int i = 0; i < nbWrongAnswerToGenerate; ++i)
             {
                 bool isOk = false;
                 while (!isOk)
@@ -258,7 +257,6 @@ public class Wave : MonoBehaviour
     private void Init()
     {
         question = "Eclate les multiples de " + multiplication.num + " !";
-
 
         foreach (Transform t in spawnPointContainer.transform)
         {

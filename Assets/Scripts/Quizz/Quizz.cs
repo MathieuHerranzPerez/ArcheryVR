@@ -5,7 +5,7 @@ using UnityEngine;
 [Serializable]
 public class Quizz
 {
-    public ScholarLevel scolarLevel;
+    public ScholarLevel scholarLevel;
     [Range(1, 3)]
     public int difficulty = 1;
     public Subject subject;
@@ -19,7 +19,7 @@ public class Quizz
         this.question = question;
         this.listAnswer = listAnswer;
         this.listBadAnswer = listBadAnswer;
-        this.scolarLevel = scolarLevel;
+        this.scholarLevel = scolarLevel;
         this.difficulty = difficulty;
         this.subject = subject;
     }
@@ -35,7 +35,7 @@ public enum ScholarLevel
 
 public enum Subject
 {
-    FRANCAIS,
     MATHS,
+    FRANCAIS,
     ANGLAIS,
 }

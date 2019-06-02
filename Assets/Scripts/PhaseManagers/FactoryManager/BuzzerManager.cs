@@ -9,6 +9,15 @@ public class BuzzerManager : MonoBehaviour
     [SerializeField]
     private Text textCurrentNumber = default;
 
+    [Header("Sound")]
+    [SerializeField]
+    private AudioClip audioWhenReset = default;
+    [SerializeField]
+    private GameObject audioPlayerPrefab = default;
+    [Range(0.05f, 1f)]
+    [SerializeField]
+    private float volume = 0.6f;
+
     // ---- INTERN ----
     private int currentNumber = 0;
         
@@ -22,6 +31,12 @@ public class BuzzerManager : MonoBehaviour
     {
         currentNumber = 0;
         textCurrentNumber.text = currentNumber.ToString();
+
+        // invoke another gameobject to play the sound
+        GameObject soundGO = (GameObject)Instantiate(audioPlayerPrefab, textCurrentNumber.transform.position, textCurrentNumber.transform.rotation, transform);
+        AudioPlayer _audioPlayer = soundGO.GetComponent<AudioPlayer>();
+        _audioPlayer.Play(audioWhenReset, volume);
+        Destroy(soundGO, 1.5f);
     }
 
     public void NotifyBuzzerTry()

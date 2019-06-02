@@ -34,8 +34,9 @@ public class DamPhaseManager : PhaseManager
 
     public override void StartWithMultiplicationTable(Multiplication multiplication)
     {
+        base.StartWithMultiplicationTable(multiplication);
+
         WeaponManager.Instance.SelectBow();
-        lastMultiplication = multiplication;
 
         isRunning = true;
         canvasTextGO.SetActive(true);
@@ -63,6 +64,7 @@ public class DamPhaseManager : PhaseManager
         canvasTextGO.SetActive(false);
         isRunning = false;
 
+        WeaponManager.Instance.SelectPointer();
         endScreenGO.SetActive(true);
     }
 }

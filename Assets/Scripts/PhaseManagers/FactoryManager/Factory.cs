@@ -19,6 +19,14 @@ public class Factory : MonoBehaviour
     [SerializeField]
     private RecipeBoard recipeBoard = default;
 
+    [Header("Item drop")]
+    [SerializeField]
+    private GameObject[] listIngredientPrefab = new GameObject[3];
+    [SerializeField]
+    private float timeBetweenDrop = 0.05f;
+    [SerializeField]
+    private Transform itemSpawnPoint = default;
+
     // ---- INTERN ----
     private FactoryPhaseManager factoryPhaseManager;
     private int[] listValues; 
@@ -59,6 +67,23 @@ public class Factory : MonoBehaviour
         }
     }
 
+    public void DropItem(int number)
+    {
+        StartCoroutine(DropItem(listIngredientPrefab[currentIndex], number));
+    }
+
+    private IEnumerator DropItem(GameObject item, int nb)
+    {
+        int currentNb = 0;
+        while(currentNb < nb)
+        {
+            GameObject itemClone = (GameObject)Instantiate(item, itemSpawnPoint.position, Random.rotation);
+            Destroy(itemClone, 1.5f);
+            ++currentNb;
+            yield return new WaitForSeconds(timeBetweenDrop);
+        }
+    }
+
     private void StartGame()
     {
         foreach(GameObject go in listIngredientImgGO)
@@ -93,12 +118,5 @@ public class Factory : MonoBehaviour
             yield return null;
         }
         canvasTipsGO.SetActive(false);
-    }
-
-    private enum Ingredient
-    {
-        Plume,
-        Baton,
-        Pierre,
     }
 }

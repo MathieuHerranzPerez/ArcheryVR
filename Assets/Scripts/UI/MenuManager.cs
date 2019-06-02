@@ -17,6 +17,8 @@ public class MenuManager : MonoBehaviour
     void Start()
     {
         Instance = this;
+
+        WeaponManager.Instance.SelectPointer();
     }
 
     public void DisplayProfileSelection()

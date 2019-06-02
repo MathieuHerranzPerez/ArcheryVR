@@ -9,6 +9,15 @@ public class TargetNumber : MonoBehaviour
     [SerializeField]
     private int num = default;
 
+    [Header("Sound")]
+    [SerializeField]
+    private AudioClip audioWhenFire = default;
+    [SerializeField]
+    private GameObject audioPlayerPrefab = default;
+    [Range(0.05f, 1f)]
+    [SerializeField]
+    private float volume = 0.6f;
+
     // ---- INTERN ----
     private float timeBetweenCollide = 1f;
     private bool canCollide = true;
@@ -24,6 +33,13 @@ public class TargetNumber : MonoBehaviour
                 arrow.MultiplyPower(num, effectPrefabForArrow);
                 hasExit = false;
                 canCollide = false;
+
+                // invoke another gameobject to play the sound
+                GameObject soundGO = (GameObject)Instantiate(audioPlayerPrefab, transform.position, transform.rotation, transform);
+                AudioPlayer _audioPlayer = soundGO.GetComponent<AudioPlayer>();
+                _audioPlayer.Play(audioWhenFire, volume);
+                Destroy(soundGO, 1.5f);
+
                 StartCoroutine(StartDelay());
             }
         }
