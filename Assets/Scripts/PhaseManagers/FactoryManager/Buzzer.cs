@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public abstract class Buzzer : MonoBehaviour
 {
     [SerializeField]
@@ -11,7 +12,10 @@ public abstract class Buzzer : MonoBehaviour
     // ---- INTERN ----
     private bool canBeHit = true;
 
-    protected abstract void ActionWhenHit();
+    protected virtual void ActionWhenHit()
+    {
+        GetComponent<AudioSource>().Play();
+    }
 
     void OnCollisionEnter(Collision other)
     {

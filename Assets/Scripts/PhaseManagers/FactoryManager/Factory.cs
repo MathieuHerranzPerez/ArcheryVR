@@ -19,6 +19,24 @@ public class Factory : MonoBehaviour
     [SerializeField]
     private RecipeBoard recipeBoard = default;
 
+    [Header("AnswersEffects")]
+    [SerializeField]
+    private ParticleSystem rightAnswerParticlePrefab = default;
+    [SerializeField]
+    private AudioClip rightAnswerAudio = default;
+    [SerializeField]
+    private ParticleSystem wrongAnswerParticlePrefab = default;
+    [SerializeField]
+    private AudioClip wrongAnswerAudio = default;
+    [SerializeField]
+    private Transform particleAnswerSpawnPoint = default;
+    [SerializeField]
+    private GameObject audioPlayerPrefab = default;
+    [Range(0.05f, 1f)]
+    [SerializeField]
+    private float volume = 0.6f;
+
+
     [Header("Item drop")]
     [SerializeField]
     private GameObject[] listIngredientPrefab = new GameObject[3];
@@ -56,10 +74,28 @@ public class Factory : MonoBehaviour
     {
         if(num == listValues[currentIndex])
         {
+            // invoke another gameobject to play the sound
+            GameObject soundGO = (GameObject)Instantiate(audioPlayerPrefab, transform.position, transform.rotation);
+            AudioPlayer _audioPlayer = soundGO.GetComponent<AudioPlayer>();
+            _audioPlayer.Play(rightAnswerAudio, volume);
+            Destroy(soundGO, 5f);
+
+            ParticleSystem ps = (ParticleSystem)Instantiate(rightAnswerParticlePrefab, particleAnswerSpawnPoint.position, particleAnswerSpawnPoint.rotation, transform);
+            Destroy(ps.gameObject, 5f);
+
             GoToNextStep();
         }
         else
         {
+            // invoke another gameobject to play the sound
+            GameObject soundGO = (GameObject)Instantiate(audioPlayerPrefab, transform.position, transform.rotation);
+            AudioPlayer _audioPlayer = soundGO.GetComponent<AudioPlayer>();
+            _audioPlayer.Play(wrongAnswerAudio, volume);
+            Destroy(soundGO, 5f);
+
+            ParticleSystem ps = (ParticleSystem)Instantiate(wrongAnswerParticlePrefab, particleAnswerSpawnPoint.position, particleAnswerSpawnPoint.rotation, transform);
+            Destroy(ps.gameObject, 5f);
+
             textTips.text = tips;
             canvasTipsGO.SetActive(true);
             StopAllCoroutines();

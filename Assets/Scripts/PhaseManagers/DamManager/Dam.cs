@@ -5,8 +5,6 @@ public class Dam : MonoBehaviour
 {
     [Header("Setup")]
     [SerializeField]
-    private GameObject damPartContainerGO = default;
-    [SerializeField]
     private GameObject[] listDamPartPrefab = new GameObject[3];
     [SerializeField]
     private Transform[] listSpawnPointDamPart = new Transform[3];

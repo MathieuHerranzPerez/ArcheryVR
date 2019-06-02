@@ -19,7 +19,7 @@ public class ProfileManager : MonoBehaviour
         Instance = this;
     }
 
-    public IEnumerator LoadProfileInformation(int id, GameManager gm)
+    public IEnumerator LoadProfileInformation(int id, MenuManager menuManager)
     {
         Debug.Log("get profile..."); // affD
         yield return StartCoroutine(LoadProfil(id));
@@ -29,7 +29,8 @@ public class ProfileManager : MonoBehaviour
         yield return StartCoroutine(LoadGrade(progression.gradeId));
 
         // continue le déroulement du programme une fois les données chargées
-        gm.ContinueStart();
+        // gm.ContinueStart();
+        menuManager.NotifyLoaded();
     }
 
 
@@ -99,7 +100,10 @@ public class ProfileManager : MonoBehaviour
         }
     }
 
-
+    public void SaveProfile()
+    {
+        SendProfile();
+    }
 
     public void SaveRes(float res)
     {
@@ -182,6 +186,8 @@ public class ProfileManager : MonoBehaviour
 
     }
 }
+
+// {"gradeId":1,"profilId":1,"difficulteMaths":1,"xpmaths":3,"difficulteFrancais":0,"xpfrancais":0,"difficulteAnglais":0,"xpanglais":0}
 
 
 [Serializable]

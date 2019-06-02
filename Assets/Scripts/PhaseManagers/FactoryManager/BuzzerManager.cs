@@ -9,6 +9,11 @@ public class BuzzerManager : MonoBehaviour
     [SerializeField]
     private Text textCurrentNumber = default;
 
+    [Header("Reset")]
+    [SerializeField]
+    private ParticleSystem resetParticleSystem = default;
+    [SerializeField]
+    private Transform particleSystemTransform = default;
     [Header("Sound")]
     [SerializeField]
     private AudioClip audioWhenReset = default;
@@ -25,6 +30,7 @@ public class BuzzerManager : MonoBehaviour
     {
         currentNumber += num;
         textCurrentNumber.text = currentNumber.ToString();
+        factory.DropItem(num);
     }
 
     public void NotifyBuzzerReset()
@@ -37,6 +43,9 @@ public class BuzzerManager : MonoBehaviour
         AudioPlayer _audioPlayer = soundGO.GetComponent<AudioPlayer>();
         _audioPlayer.Play(audioWhenReset, volume);
         Destroy(soundGO, 1.5f);
+
+        ParticleSystem particleSystem = (ParticleSystem)Instantiate(resetParticleSystem, particleSystemTransform.position, particleSystemTransform.rotation, transform);
+        Destroy(particleSystem.gameObject, 1.5f);
     }
 
     public void NotifyBuzzerTry()

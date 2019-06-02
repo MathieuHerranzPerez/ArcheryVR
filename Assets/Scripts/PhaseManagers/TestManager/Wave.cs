@@ -58,22 +58,6 @@ public class Wave : MonoBehaviour
         StartSpawn();
     }
 
-    /*
-    public void SetQuizzFromMananger(Quizz quizz, TestPhaseManager quizzManager)
-    {
-        this.quizzManager = quizzManager;
-        this.quizz = quizz;
-        foreach(QuestionScreen qs in listTextQuestion)
-        {
-            qs.SetQuestion(quizz.question);
-            qs.gameObject.SetActive(true);
-        }
-
-        StartSpawn();
-    }
-    */
-
-
     public void NotifySphereExplodeWithArrow(Sphere sphere)
     {
         if (sphere.IsCorrect())
@@ -123,31 +107,6 @@ public class Wave : MonoBehaviour
         Destroy(gameObject);
     }
 
-    /*
-    private void StartSpawn()
-    {
-        Init();
-
-        if (listSpawnPoint.Count < quizz.listBadAnswer.Count + quizz.listAnswer.Count)
-            throw new Exception("Not enought spawn points to handle all the answers");
-
-        // tmp list to shuffle the answers
-        List<Tuple<string, bool>> listQuizzToSpawn = new List<Tuple<string, bool>>();
-        foreach(string str in quizz.listAnswer)
-        {
-            listQuizzToSpawn.Add(new Tuple<string, bool>(str, true));
-        }
-        foreach (string str in quizz.listBadAnswer)
-        {
-            listQuizzToSpawn.Add(new Tuple<string, bool>(str, false));
-        }
-
-        Utils.Shuffle(listQuizzToSpawn);
-
-        float speed = quizz.difficulty > 2 ? maxSpeed : minSpeed;
-        StartCoroutine(SpawnSpheres(listQuizzToSpawn, speed));
-    }
-    */
     private void StartSpawn()
     {
         if (listSpawnPoint.Count < nbGoodAnswerToGenerate + nbWrongAnswerToGenerate)
@@ -233,8 +192,6 @@ public class Wave : MonoBehaviour
 
     private void FinishWave()
     {
-        Debug.Log("Wave finished");
-
         foreach(Transform tSphere in sphereContainer.transform)
         {
             Destroy(tSphere.gameObject);    // todo anim

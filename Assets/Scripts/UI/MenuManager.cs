@@ -7,18 +7,29 @@ public class MenuManager : MonoBehaviour
     [Header("Setup")]
     [SerializeField]
     private GameObject profileSelectionUI = default;
-
     [SerializeField]
     private ProfileOptionUI profileOptionUI = default;
-
     [SerializeField]
     private MainMenuUI mainMenuUI = default;
+
+    [SerializeField]
+    private SceneFader sceneFader = default;
 
     void Start()
     {
         Instance = this;
 
         WeaponManager.Instance.SelectPointer();
+
+        if(ProfileManager.Instance.profil != null)
+        {
+            StartCoroutine(ProfileManager.Instance.LoadProfileInformation(ProfileManager.Instance.profil.id, this));
+            mainMenuUI.gameObject.SetActive(true);
+        }
+        else
+        {
+            profileSelectionUI.SetActive(true);
+        }
     }
 
     public void DisplayProfileSelection()
@@ -26,9 +37,9 @@ public class MenuManager : MonoBehaviour
         profileSelectionUI.SetActive(true);
     }
 
-    public void ChargeProfile(string idProfile)
+    public void ChargeProfile(int idProfile)
     {
-        Profile.Instance.LoadProfile(idProfile);    // need to call NotifyLoaded
+        StartCoroutine(ProfileManager.Instance.LoadProfileInformation(idProfile, this));    // need to call NotifyLoaded
 
         profileSelectionUI.SetActive(false);
     }
@@ -46,6 +57,6 @@ public class MenuManager : MonoBehaviour
 
     public void Play()
     {
-        // todo
+        sceneFader.FadeTo("SampleScene");
     }
 }

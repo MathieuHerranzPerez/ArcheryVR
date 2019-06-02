@@ -29,7 +29,6 @@ public class Arrow : MonoBehaviour
     private bool isAttached = false;
     private bool isFired = false;
     private Rigidbody rBody;
-    private int nbTriggerActive = 0;
 
     private Vector3 positionBase;
     private Quaternion rotationBase;

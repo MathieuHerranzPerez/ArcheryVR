@@ -10,30 +10,25 @@ public class ProfileOptionUI : MonoBehaviour
     private GameObject profileOptionCanvasGO = default;
 
     [SerializeField]
-    private Dropdown scholarLevelDropdown = default;
-    [SerializeField]
     private Dropdown genderDropdown = default;
 
     // ---- INTERN ----
-    private ScholarLevel scholarLevelSelected;  // TODO init with BD
     private Gender genderSelected;              // TODO init with BD  
 
     void Start()
     {
-        InitDropdownScholarLevel(); // TODO init with BD  
-        InitDropdownGender();       // TODO init with BD  
+        InitDropdownGender();       // TODO init with BD
     }
 
     public void Save()
     {
-        Profile.Instance.SaveProfile();
+        ProfileManager.Instance.SaveProfile();
     }
 
     public void Display()
     {
-        scholarLevelDropdown.value = (int)Profile.Instance.scholarLevel;
-        genderDropdown.value = (int)Profile.Instance.gender;
-
+        genderSelected = (Gender)ProfileManager.Instance.profil.genre;
+        DropdownGenderChange((int)genderSelected);  // genderDropdown.value = (int) genderSelected;/*(int)ProfileManager.Instance.profil.genre;*/
         profileOptionCanvasGO.SetActive(true);
     }
 
@@ -42,25 +37,11 @@ public class ProfileOptionUI : MonoBehaviour
         profileOptionCanvasGO.SetActive(false);
     }
 
-    public void DropdownScholarLevelChange(int index)
-    {
-        scholarLevelSelected = (ScholarLevel) index;
-    }
-
     public void DropdownGenderChange(int index)
     {
         genderSelected = (Gender)index;
     }
 
-    private void InitDropdownScholarLevel()
-    {
-        Debug.Log("Init");
-        string[] enumNames = Enum.GetNames(typeof(ScholarLevel));
-        List<string> listScholarLevel = new List<string>(enumNames);
-
-        scholarLevelDropdown.ClearOptions();
-        scholarLevelDropdown.AddOptions(listScholarLevel);
-    }
 
     private void InitDropdownGender()
     {
@@ -70,4 +51,10 @@ public class ProfileOptionUI : MonoBehaviour
         genderDropdown.ClearOptions();
         genderDropdown.AddOptions(listGender);
     }
+}
+
+public enum Gender
+{
+    Garcon,
+    fille,
 }

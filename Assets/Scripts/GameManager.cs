@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Networking;
 
 
 public class GameManager : MonoBehaviour
@@ -10,6 +9,9 @@ public class GameManager : MonoBehaviour
     [Header("Setup")]
     [SerializeField]
     private PhaseManager[] listPhaseManager = new PhaseManager[3];
+
+    [SerializeField]
+    private SceneFader sceneFader = default;
 
     [SerializeField]
     private GameObject player = default;
@@ -22,14 +24,16 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         // récupere profil + grade + progression
-        StartCoroutine(ProfileManager.Instance.LoadProfileInformation(1, this));  // todo changer ID to connected player
+        // StartCoroutine(ProfileManager.Instance.LoadProfileInformation(1, this));  // todo changer ID to connected player
+
+        ContinueStart();
     }
 
     public void ContinueStart()
     {
-        Debug.Log("profil : " + ProfileManager.Instance.profil.nom); // affD
-        Debug.Log("progression : " + ProfileManager.Instance.progression.difficulteMaths + " / " + ProfileManager.Instance.progression.xpmaths); // affD
-        Debug.Log("grade : " + ProfileManager.Instance.grade.nom); // affD
+        //Debug.Log("profil : " + ProfileManager.Instance.profil.nom); // affD
+        //Debug.Log("progression : " + ProfileManager.Instance.progression.difficulteMaths + " / " + ProfileManager.Instance.progression.xpmaths); // affD
+        //Debug.Log("grade : " + ProfileManager.Instance.grade.nom); // affD
 
         foreach (PhaseManager pm in listPhaseManager)
         {
@@ -66,6 +70,11 @@ public class GameManager : MonoBehaviour
         {
             throw new System.Exception("You try to access a phase that does not exist");
         }
+    }
+
+    public void ReturnToMenu()
+    {
+        sceneFader.FadeTo("MainMenuScene");
     }
 
     private void StartPhase(int phaseIndex)

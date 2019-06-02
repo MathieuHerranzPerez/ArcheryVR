@@ -7,6 +7,7 @@ public class BuzzerNum : Buzzer
 
     protected override void ActionWhenHit()
     {
+        base.ActionWhenHit();
         buzzerManager.NotifyBuzzerHit(num);
     }
 }
