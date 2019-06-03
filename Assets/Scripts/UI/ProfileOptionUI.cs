@@ -28,7 +28,8 @@ public class ProfileOptionUI : MonoBehaviour
     public void Display()
     {
         genderSelected = (Gender)ProfileManager.Instance.profil.genre;
-        DropdownGenderChange((int)genderSelected);  // genderDropdown.value = (int) genderSelected;/*(int)ProfileManager.Instance.profil.genre;*/
+        Debug.Log("Gender : " + (Gender)ProfileManager.Instance.profil.genre);
+        ChangeDropdownGender((int)genderSelected);  // genderDropdown.value = (int) genderSelected;/*(int)ProfileManager.Instance.profil.genre;*/
         profileOptionCanvasGO.SetActive(true);
     }
 
@@ -37,9 +38,14 @@ public class ProfileOptionUI : MonoBehaviour
         profileOptionCanvasGO.SetActive(false);
     }
 
-    public void DropdownGenderChange(int index)
+    public void ChangeDropdownGender(int index)
     {
-        genderSelected = (Gender)index;
+        genderDropdown.value = index - 1;
+    }
+
+    public void DropdownChanged()
+    {
+        genderSelected = (Gender)genderDropdown.value;
     }
 
 
@@ -55,6 +61,6 @@ public class ProfileOptionUI : MonoBehaviour
 
 public enum Gender
 {
-    Garcon,
-    fille,
+    Garcon = 1,
+    Fille = 2,
 }

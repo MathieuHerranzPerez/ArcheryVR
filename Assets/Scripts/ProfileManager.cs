@@ -14,9 +14,15 @@ public class ProfileManager : MonoBehaviour
     public Grade grade;
     public Progression progression;
 
+    public bool IsInitialized { get; private set; }
+
     void Awake()
     {
-        Instance = this;
+        if (Instance == null)
+            Instance = this;
+        IsInitialized = false;
+
+        DontDestroyOnLoad(gameObject);
     }
 
     public IEnumerator LoadProfileInformation(int id, MenuManager menuManager)
@@ -28,9 +34,24 @@ public class ProfileManager : MonoBehaviour
         Debug.Log("get grade..."); // affD
         yield return StartCoroutine(LoadGrade(progression.gradeId));
 
+        IsInitialized = true;
         // continue le déroulement du programme une fois les données chargées
         // gm.ContinueStart();
         menuManager.NotifyLoaded();
+    }
+
+    public IEnumerator LoadProfileInformationFromGameManager(int id, GameManager gm)
+    {
+        Debug.Log("get profile..."); // affD
+        yield return StartCoroutine(LoadProfil(id));
+        Debug.Log("get progression..."); // affD
+        yield return StartCoroutine(LoadProgression(id));
+        Debug.Log("get grade..."); // affD
+        yield return StartCoroutine(LoadGrade(progression.gradeId));
+
+        IsInitialized = true;
+        // continue le déroulement du programme une fois les données chargées
+        gm.ContinueStart();
     }
 
 

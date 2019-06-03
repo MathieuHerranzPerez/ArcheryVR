@@ -45,7 +45,7 @@ public class BuzzerManager : MonoBehaviour
         Destroy(soundGO, 1.5f);
 
         ParticleSystem particleSystem = (ParticleSystem)Instantiate(resetParticleSystem, particleSystemTransform.position, particleSystemTransform.rotation, transform);
-        Destroy(particleSystem.gameObject, 1.5f);
+        Destroy(particleSystem.gameObject, 5f);
     }
 
     public void NotifyBuzzerTry()

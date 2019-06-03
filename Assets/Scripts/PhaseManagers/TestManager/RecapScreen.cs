@@ -53,7 +53,7 @@ public class RecapScreen : MonoBehaviour
 
         textTips.text = tips;
 
-        CanvasWithBtnToInteract.worldCamera = PlayerCamera.Instance.GetCamera();
+        CanvasWithBtnToInteract.worldCamera = Pointer.Cam;
     }
 
     private string GetCongratulationSentence(int percentage)

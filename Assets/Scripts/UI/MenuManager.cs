@@ -21,8 +21,9 @@ public class MenuManager : MonoBehaviour
 
         WeaponManager.Instance.SelectPointer();
 
-        if(ProfileManager.Instance.profil != null)
+        if(ProfileManager.Instance.IsInitialized)
         {
+            profileSelectionUI.SetActive(false);
             StartCoroutine(ProfileManager.Instance.LoadProfileInformation(ProfileManager.Instance.profil.id, this));
             mainMenuUI.gameObject.SetActive(true);
         }
@@ -34,6 +35,8 @@ public class MenuManager : MonoBehaviour
 
     public void DisplayProfileSelection()
     {
+        profileOptionUI.Hide();
+        mainMenuUI.gameObject.SetActive(false);
         profileSelectionUI.SetActive(true);
     }
 
