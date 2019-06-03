@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
 
         InitForLevel(ProfileManager.Instance.progression.difficulteMaths);
 
-        currentPhaseIndex = 2;
+        currentPhaseIndex = 0;
         StartPhase(currentPhaseIndex);
     }  
 
