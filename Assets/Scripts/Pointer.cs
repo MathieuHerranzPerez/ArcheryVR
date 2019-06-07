@@ -4,8 +4,11 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(LineRenderer))]
+[RequireComponent(typeof(Camera))]
 public class Pointer : MonoBehaviour
 {
+    public static Camera Cam { get; private set; }
+
     [SerializeField]
     private float defaultLenght = 25f;
 
@@ -21,6 +24,7 @@ public class Pointer : MonoBehaviour
     void Awake()
     {
         lineRenderer = GetComponent<LineRenderer>();
+        Cam = GetComponent<Camera>();
     }
 
     void Update()

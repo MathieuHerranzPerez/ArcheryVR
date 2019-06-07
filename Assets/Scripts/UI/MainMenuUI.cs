@@ -1,13 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class MainMenuUI : MonoBehaviour
 {
     [Header("Setup")]
-    [SerializeField]
-    private Text textScholarLevel = default;
     [SerializeField]
     private Image genderImage = default;
 
@@ -20,8 +16,7 @@ public class MainMenuUI : MonoBehaviour
 
     public void NotifChange()
     {
-        textScholarLevel.text = Profile.Instance.scholarLevel.ToString();
-        genderImage.sprite = Profile.Instance.gender == Gender.GARCON ? imageMaleGender : imageFemaleGender;
+        genderImage.sprite = ProfileManager.Instance.profil.genre == 1 ? imageMaleGender : imageFemaleGender;
     }
 
     public void Play()

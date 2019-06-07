@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class ProfileSelectionBtn : MonoBehaviour
 {
     [SerializeField]
-    private string userId = "";
+    private int userId = 1;
 
     [Header("Setup")]
     [SerializeField]

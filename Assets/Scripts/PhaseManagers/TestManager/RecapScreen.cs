@@ -24,6 +24,8 @@ public class RecapScreen : MonoBehaviour
 
     [Header("Setup")]
     [SerializeField]
+    private Canvas CanvasWithBtnToInteract = default;
+    [SerializeField]
     private Text textQuestion = default;
     [SerializeField]
     private Text textNbRightAnswer = default;
@@ -35,6 +37,8 @@ public class RecapScreen : MonoBehaviour
     private Text textCongratulation = default;
     [SerializeField]
     private Text textTips = default;
+
+    // --- INTERN ---
 
     public void SetValues(string question, int nbRightAnswer, int nbWrongAnswer, string tips)
     {
@@ -48,6 +52,8 @@ public class RecapScreen : MonoBehaviour
         textCongratulation.text = GetCongratulationSentence(percentage);
 
         textTips.text = tips;
+
+        CanvasWithBtnToInteract.worldCamera = Pointer.Cam;
     }
 
     private string GetCongratulationSentence(int percentage)
