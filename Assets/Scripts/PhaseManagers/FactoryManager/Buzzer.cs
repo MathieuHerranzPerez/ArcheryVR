@@ -9,6 +9,12 @@ public abstract class Buzzer : MonoBehaviour
     [SerializeField]
     protected BuzzerManager buzzerManager = default;
 
+    [Header("Setup")]
+    [SerializeField]
+    protected ParticleSystem particleWhenHit = default;
+    [SerializeField]
+    private Transform particleSpawnPoint = default;
+
     // ---- INTERN ----
     private bool canBeHit = true;
 
@@ -25,6 +31,9 @@ public abstract class Buzzer : MonoBehaviour
             {
                 canBeHit = false;
                 ActionWhenHit();
+
+                ParticleSystem particleClone = (ParticleSystem)Instantiate(particleWhenHit, particleSpawnPoint.position, particleSpawnPoint.rotation, transform);
+                Destroy(particleClone.gameObject, 3f);
 
                 StartCoroutine(StartDelay());
             }
