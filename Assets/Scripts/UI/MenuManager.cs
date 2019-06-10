@@ -60,6 +60,19 @@ public class MenuManager : MonoBehaviour
 
     public void Play()
     {
+        mainMenuUI.gameObject.SetActive(false);
         sceneFader.FadeTo("SampleScene");
+    }
+
+    public void PlayTuto()
+    {
+        mainMenuUI.gameObject.SetActive(false);
+        sceneFader.FadeTo("TutoScene");
+    }
+
+    public void LeaveGame()
+    {
+        Debug.Log("Leaving");
+        Application.Quit();
     }
 }

@@ -25,10 +25,8 @@ public class GameManager : MonoBehaviour
     {
         // récupere profil + grade + progression
         // StartCoroutine(ProfileManager.Instance.LoadProfileInformation(1, this));  // todo changer ID to connected player
-        if (ProfileManager.Instance.IsInitialized)
-            ContinueStart();
-        else
-            StartCoroutine(ProfileManager.Instance.LoadProfileInformationFromGameManager(1, this));
+
+        StartCoroutine(ProfileManager.Instance.LoadProfileInformationFromGameManager(1, this));
     }
 
     public void ContinueStart()

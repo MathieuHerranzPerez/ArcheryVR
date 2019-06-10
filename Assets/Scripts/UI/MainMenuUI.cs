@@ -28,4 +28,9 @@ public class MainMenuUI : MonoBehaviour
     {
         MenuManager.Instance.DisplayProfileSelection();
     }
+
+    public void PlayTuto()
+    {
+        MenuManager.Instance.PlayTuto();
+    }
 }

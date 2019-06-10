@@ -38,10 +38,6 @@ public abstract class Buzzer : MonoBehaviour
                 StartCoroutine(StartDelay());
             }
         }
-        else
-        {
-            Debug.Log("Can't be hit");
-        }
     }
 
     private IEnumerator StartDelay()

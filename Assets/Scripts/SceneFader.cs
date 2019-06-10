@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class SceneFader : MonoBehaviour
 {
     public Image img;
+    public GameObject CanvasBlackGO;
     public AnimationCurve curve;
 
     public GameObject loadScreen;
@@ -36,13 +37,13 @@ public class SceneFader : MonoBehaviour
 
     private void FadeOut(string scene)
     {
-        StartCoroutine(loadingScreen(scene));
+        StartCoroutine(LoadingScreen(scene));
     }
 
 
-    IEnumerator loadingScreen(string scene)
+    IEnumerator LoadingScreen(string scene)
     {
-
+        CanvasBlackGO.SetActive(true);
         {// -- FADE OUT --
             float t = 0f;
             while (t < 1f)
@@ -106,6 +107,8 @@ public class SceneFader : MonoBehaviour
                             yield return 0;             // skip to the next frame
                         }
                     }// -- /FADE OUT --
+
+                    CanvasBlackGO.SetActive(false);
                 }
             }
             timeLoadingScreen += Time.deltaTime;

@@ -63,7 +63,6 @@ public class TutoManager : MonoBehaviour
         }
         else if(state == State.SHOOT_SPHERE)
         {
-            Debug.Log("SHOOT");
             if (goodSphereGO1 == null && goodSphereGO2 == null)
             {
                 Debug.Log("destroyed");
