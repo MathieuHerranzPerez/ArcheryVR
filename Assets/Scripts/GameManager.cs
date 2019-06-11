@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 
 public class GameManager : MonoBehaviour
@@ -26,7 +23,7 @@ public class GameManager : MonoBehaviour
         // récupere profil + grade + progression
         // StartCoroutine(ProfileManager.Instance.LoadProfileInformation(1, this));  // todo changer ID to connected player
 
-        StartCoroutine(ProfileManager.Instance.LoadProfileInformationFromGameManager(1, this));
+        StartCoroutine(ProfileManager.Instance.LoadProfileInformationFromGameManager(ProfileManager.Instance.profil.id, this));
     }
 
     public void ContinueStart()
@@ -75,6 +72,11 @@ public class GameManager : MonoBehaviour
     public void ReturnToMenu()
     {
         sceneFader.FadeTo("MainMenuScene");
+    }
+
+    public void LeaveGame()
+    {
+        Application.Quit();
     }
 
     private void StartPhase(int phaseIndex)

@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class TutoManager : MonoBehaviour
 {
+
+    public SceneFader sceneFader;
     public ArrowManager arrowManager;
     public GameObject goodSphereGO1;
     public GameObject goodSphereGO2;
@@ -16,6 +18,7 @@ public class TutoManager : MonoBehaviour
     public GameObject screenTutoLoseArrow;
     public GameObject screenTutoQuestion;
     public GameObject screenTutoShootSphere;
+    public GameObject screenEndTuto;
 
 
     private State state = State.GET_ARROW;
@@ -130,17 +133,19 @@ public class TutoManager : MonoBehaviour
             screenTutoShootSphere.SetActive(false);
             questionsContainerGO.SetActive(false);
 
+            screenEndTuto.SetActive(true);
             WeaponManager.Instance.SelectPointer();
         }
         else if (state == State.SCORE)
         {
-            
+
         }
     }
 
     public void LeaveTuto()
     {
-
+        screenEndTuto.SetActive(false);
+        sceneFader.FadeTo("MainMenuScene");
     }
 
     private IEnumerator CountTimeForQuestion()

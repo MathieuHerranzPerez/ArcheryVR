@@ -500,7 +500,7 @@ MonoBehaviour:
   audioWhenFire: {fileID: 8300000, guid: 52a7dfd93d2201341918097a4c32b9cd, type: 3}
   audioPlayerPrefab: {fileID: 8735269548402984163, guid: c1589dcf960a2644ca19dd6daca68907,
     type: 3}
-  volume: 0.6
+  volume: 0.3
   power: 1
 --- !u!114 &8181430319624445359
 MonoBehaviour:
