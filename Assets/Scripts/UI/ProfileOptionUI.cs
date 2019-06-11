@@ -7,9 +7,6 @@ public class ProfileOptionUI : MonoBehaviour
 {
     [Header("Setup")]
     [SerializeField]
-    private GameObject profileOptionCanvasGO = default;
-
-    [SerializeField]
     private Dropdown genderDropdown = default;
 
     // ---- INTERN ----
@@ -30,12 +27,6 @@ public class ProfileOptionUI : MonoBehaviour
         genderSelected = (Gender)ProfileManager.Instance.profil.genre;
         Debug.Log("Gender : " + (Gender)ProfileManager.Instance.profil.genre);
         ChangeDropdownGender((int)genderSelected);  // genderDropdown.value = (int) genderSelected;/*(int)ProfileManager.Instance.profil.genre;*/
-        profileOptionCanvasGO.SetActive(true);
-    }
-
-    public void Hide()
-    {
-        profileOptionCanvasGO.SetActive(false);
     }
 
     public void ChangeDropdownGender(int index)

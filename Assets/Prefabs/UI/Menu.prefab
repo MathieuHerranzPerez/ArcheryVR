@@ -725,7 +725,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b886172489a8b3408369165008635ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  userId: 4
+  userId: 3
   menuManager: {fileID: 4197134437844766471}
 --- !u!1 &4197134437213996490
 GameObject:
@@ -988,7 +988,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b886172489a8b3408369165008635ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  userId: 1
+  userId: 0
   menuManager: {fileID: 4197134437844766471}
 --- !u!1 &4197134437386905695
 GameObject:
@@ -1472,7 +1472,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!114 &4197134437964301567
 MonoBehaviour:
@@ -2087,7 +2087,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b886172489a8b3408369165008635ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  userId: 3
+  userId: 2
   menuManager: {fileID: 4197134437844766471}
 --- !u!1 &4197134438759645284
 GameObject:
@@ -3258,7 +3258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b886172489a8b3408369165008635ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  userId: 2
+  userId: 1
   menuManager: {fileID: 4197134437844766471}
 --- !u!1 &4197134439182379273
 GameObject:
@@ -3737,8 +3737,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.384, y: 0.3875}
-  m_SizeDelta: {x: 116.0235, y: 117.8195}
+  m_AnchoredPosition: {x: 0.384, y: 0.394}
+  m_SizeDelta: {x: 116.0235, y: 120.406}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &4800086115081441599
 Canvas:
@@ -3867,8 +3867,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 7e556ab09093ec140a4899fcb8c2e1d2, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -3896,8 +3896,8 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.3207547, g: 0.24302466, b: 0.11347455, a: 1}
-    m_HighlightedColor: {r: 0.6981132, g: 0.489794, b: 0.19428623, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.4716981, g: 0.4716981, b: 0.4716981, a: 1}
     m_PressedColor: {r: 0.18867922, g: 0.1348431, b: 0.061409745, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}

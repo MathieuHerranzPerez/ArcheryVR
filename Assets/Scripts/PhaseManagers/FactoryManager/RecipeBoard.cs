@@ -10,10 +10,13 @@ public class RecipeBoard : MonoBehaviour
     private Text textNbStick = default;
     [SerializeField]
     private Text textNbSpear = default;
+    [SerializeField]
+    private Text textNbArrow = default;
 
     
-    public void SetRecipe(int nbFeather, int nbStick, int nbSpear)
+    public void SetRecipe(int nbArrow, int nbFeather, int nbStick, int nbSpear)
     {
+        textNbArrow.text = nbArrow.ToString();
         textNbFeather.text = nbFeather.ToString();
         textNbStick.text = nbStick.ToString();
         textNbSpear.text = nbSpear.ToString();

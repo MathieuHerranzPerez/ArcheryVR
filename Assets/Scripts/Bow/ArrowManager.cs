@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using Valve.VR;
 
 public class ArrowManager : MonoBehaviour
@@ -105,6 +106,11 @@ public class ArrowManager : MonoBehaviour
     private void Fire()
     {
         currentArrow.transform.parent = null;
+        FireArrow(currentArrow);
+    }
+
+    private void FireArrow(GameObject arrow)
+    {
         float dist = Vector3.Distance(stringStartPoint.position, trackedObject.transform.position);
         float power;
         if (dist > maxDist)
@@ -115,9 +121,9 @@ public class ArrowManager : MonoBehaviour
             power = distRatio * maxPower / 100f;
         }
 
-        Vector3 force = currentArrow.transform.forward * power;
-        currentArrow.GetComponent<Arrow>().Fire(force);
-        Destroy(currentArrow, timeToLive);
+        Vector3 force = arrow.transform.forward * power;
+        arrow.GetComponent<Arrow>().Fire(force);
+        Destroy(arrow, timeToLive);
     }
 
     public void AttachBowToArrow()
@@ -129,6 +135,14 @@ public class ArrowManager : MonoBehaviour
         isAttached = true;
     }
 
+    public void ResetArrow()
+    {
+        if (currentArrow != null)
+        {
+            currentArrow = null;
+            Destroy(currentArrow.gameObject);
+        }
+    }
 
     // ---- tuto ----
     public GameObject GetCurrentArrow()

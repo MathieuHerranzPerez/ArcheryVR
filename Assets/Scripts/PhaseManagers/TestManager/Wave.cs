@@ -100,7 +100,6 @@ public class Wave : MonoBehaviour
     }
 
     
-    // TODO call with btn
     public void DestroyWave()
     {
         testPhaseManager.NotifyWaveDestroyed();

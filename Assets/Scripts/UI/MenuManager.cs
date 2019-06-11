@@ -8,7 +8,7 @@ public class MenuManager : MonoBehaviour
     [SerializeField]
     private GameObject profileSelectionUI = default;
     [SerializeField]
-    private ProfileOptionUI profileOptionUI = default;
+    private GameObject optionUI = default;
     [SerializeField]
     private MainMenuUI mainMenuUI = default;
 
@@ -35,9 +35,22 @@ public class MenuManager : MonoBehaviour
 
     public void DisplayProfileSelection()
     {
-        profileOptionUI.Hide();
+        optionUI.SetActive(false);
         mainMenuUI.gameObject.SetActive(false);
         profileSelectionUI.SetActive(true);
+    }
+
+    public void DisplayOption()
+    {
+        mainMenuUI.gameObject.SetActive(false);
+        optionUI.SetActive(true);
+        optionUI.GetComponent<ProfileOptionUI>().Display();
+    }
+
+    public void HideOption()
+    {
+        optionUI.SetActive(false);
+        mainMenuUI.gameObject.SetActive(true);
     }
 
     public void ChargeProfile(int idProfile)
@@ -51,11 +64,6 @@ public class MenuManager : MonoBehaviour
     {
         mainMenuUI.NotifChange();
         mainMenuUI.gameObject.SetActive(true);
-    }
-
-    public void DisplayOption()
-    {
-        profileOptionUI.Display();
     }
 
     public void Play()

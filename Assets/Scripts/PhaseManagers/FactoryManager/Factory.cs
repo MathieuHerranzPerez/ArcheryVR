@@ -61,7 +61,7 @@ public class Factory : MonoBehaviour
         {
             this.listValues[i] = listValues[i] * num;
         }
-        recipeBoard.SetRecipe(listValues[0], listValues[1], listValues[2]);
+        recipeBoard.SetRecipe(num, listValues[0], listValues[1], listValues[2]);
 
         tips = tips.Replace("%", num.ToString());
         textTips.text = tips;

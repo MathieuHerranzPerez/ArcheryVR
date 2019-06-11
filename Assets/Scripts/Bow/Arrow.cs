@@ -18,7 +18,7 @@ public class Arrow : MonoBehaviour
     private AudioClip audioWhenFire = default;
     [SerializeField]
     private GameObject audioPlayerPrefab = default;
-    [Range(0.05f, 1f)]
+    [Range(0, 1f)]
     [SerializeField]
     private float volume = 0.6f;
 

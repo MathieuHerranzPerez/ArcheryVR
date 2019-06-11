@@ -201,7 +201,7 @@ public class ProfileManager : MonoBehaviour
 
         string json = JsonUtility.ToJson(ProfileManager.Instance.profil);
 
-        UnityWebRequest wwwRes = UnityWebRequest.Put("https://archeryvr.azurewebsites.net/api/ProfilAPI/" + ProfileManager.Instance.profil.id, json);
+        UnityWebRequest wwwRes = UnityWebRequest.Put("https://archeryvr.azurewebsites.net/api/ProfilAPI/" + profil.id, json);
         wwwRes.SetRequestHeader("Content-Type", "application/json");
         wwwRes.SendWebRequest();
 

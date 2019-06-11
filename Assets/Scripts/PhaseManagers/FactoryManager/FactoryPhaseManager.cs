@@ -6,8 +6,6 @@ public class FactoryPhaseManager : PhaseManager
     [Header("Setup")]
     [SerializeField]
     private Factory factory = default;
-    [SerializeField]
-    private ArrowOrder arrowOrder = default;
 
     public override void StartWithMultiplicationTable(Multiplication multiplication)
     {
@@ -31,7 +29,6 @@ public class FactoryPhaseManager : PhaseManager
         }
 
         factory.InitWithValuesNumAndManager(listUsedValues, multiplication.num, this);
-        arrowOrder.SetOrder(multiplication.num);
     }
 
     public void NotifyEnd()

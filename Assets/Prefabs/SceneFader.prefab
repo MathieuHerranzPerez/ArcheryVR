@@ -220,6 +220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   img: {fileID: 276647347242045405}
+  CanvasBlackGO: {fileID: 3960784932545931135}
   curve:
     serializedVersion: 2
     m_Curve:

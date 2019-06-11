@@ -6,6 +6,8 @@ public class WeaponManager : MonoBehaviour
 
     [Header("Setup")]
     [SerializeField]
+    private ArrowManager arrowManager = default;
+    [SerializeField]
     private GameObject hammerGO = default;
     [Header("Bow")]
     [SerializeField]
@@ -43,6 +45,7 @@ public class WeaponManager : MonoBehaviour
 
     private void ResetWeapon()
     {
+        arrowManager.ResetArrow();
         bowGO.SetActive(false);
         quiverGO.SetActive(false);
 
